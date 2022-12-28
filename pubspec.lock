@@ -197,6 +197,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0"
+  downloads_path_provider_28:
+    dependency: "direct main"
+    description:
+      path: downloads_path_provider
+      relative: true
+    source: path
+    version: "0.1.0"
   dropdown_button2:
     dependency: "direct main"
     description:
@@ -861,13 +868,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
-  open_file:
+  open_filex:
     dependency: "direct main"
     description:
-      name: open_file
+      name: open_filex
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.1"
+    version: "3.4.0"
   package_info:
     dependency: "direct main"
     description:

@@ -10,7 +10,8 @@ import 'package:http/http.dart' as http;
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:open_file/open_file.dart';
+import 'package:open_filex/open_filex.dart';
+// import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
@@ -245,7 +246,7 @@ class _ChatState extends State<Chat> {
       // }
 
       if (hasExisted) {
-        final _openFile = await OpenFile.open(_filePath + "/" + fileName);
+        final _openFile = await OpenFilex.open(_filePath + "/" + fileName);
       } else if (downloadlist.containsKey(mid)) {
         setSnackbar(getTranslated(context, 'Downloading')!);
       } else {
