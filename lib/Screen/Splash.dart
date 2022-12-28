@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'package:entemarket_user/Provider/SettingProvider.dart';
-import 'package:entemarket_user/Screen/Intro_Slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +7,9 @@ import '../Helper/Color.dart';
 import '../Helper/Session.dart';
 import '../Helper/String.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../Provider/SettingProvider.dart';
+import 'Intro_Slider.dart';
 
 //splash screen of app
 class Splash extends StatefulWidget {

@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:entemarket_user/Helper/Session.dart';
+// import 'package:vezi/Helper/Session.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../Helper/Color.dart';
+import '../Helper/Session.dart';
 import '../Helper/String.dart';
 import 'package:http/http.dart' as http;
 

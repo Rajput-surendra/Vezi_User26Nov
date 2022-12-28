@@ -2,16 +2,16 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:entemarket_user/Helper/app_assets.dart';
-import 'package:entemarket_user/Provider/CartProvider.dart';
-import 'package:entemarket_user/Provider/FavoriteProvider.dart';
-import 'package:entemarket_user/Provider/HomeProvider.dart';
-import 'package:entemarket_user/Provider/ProductDetailProvider.dart';
-import 'package:entemarket_user/Provider/UserProvider.dart';
-import 'package:entemarket_user/Screen/Cart.dart';
-import 'package:entemarket_user/Screen/CompareList.dart';
-import 'package:entemarket_user/Screen/ProductList.dart';
-import 'package:entemarket_user/Screen/ReviewList.dart';
+// import 'package:vezi/Helper/app_assets.dart';
+// import 'package:vezi/Provider/CartProvider.dart';
+// import 'package:vezi/Provider/FavoriteProvider.dart';
+// import 'package:vezi/Provider/HomeProvider.dart';
+// import 'package:vezi/Provider/ProductDetailProvider.dart';
+// import 'package:vezi/Provider/UserProvider.dart';
+// import 'package:vezi/Screen/Cart.dart';
+// import 'package:vezi/Screen/CompareList.dart';
+// import 'package:vezi/Screen/ProductList.dart';
+// import 'package:vezi/Screen/ReviewList.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -34,12 +34,20 @@ import '../Helper/Constant.dart';
 import '../Helper/Session.dart';
 import '../Helper/SimBtn.dart';
 import '../Helper/String.dart';
+import '../Helper/app_assets.dart';
 import '../Model/Section_Model.dart';
 import '../Model/User.dart';
+import '../Provider/CartProvider.dart';
+import '../Provider/FavoriteProvider.dart';
+import '../Provider/HomeProvider.dart';
+import '../Provider/UserProvider.dart';
+import 'Cart.dart';
 import 'Favorite.dart';
 import 'HomePage.dart';
 import 'Login.dart';
+import 'ProductList.dart';
 import 'Product_Preview.dart';
+import 'ReviewList.dart';
 import 'Review_Gallary.dart';
 import 'Review_Preview.dart';
 import 'Search.dart';
@@ -3215,20 +3223,20 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
         packageName: packageName,
         minimumVersion: 1,
       ),
-      iosParameters: IosParameters(
-        bundleId: iosPackage,
-        minimumVersion: '1',
-        appStoreId: appStoreId,
-      ),
+      // iosParameters: IosParameters(
+      //   bundleId: iosPackage,
+      //   minimumVersion: '1',
+      //   appStoreId: appStoreId,
+      // ),
     );
-
-    final Uri longDynamicUrl = await parameters.buildUrl();
-
-    shortenedLink = await DynamicLinkParameters.shortenUrl(
-      longDynamicUrl,
-      new DynamicLinkParametersOptions(
-          shortDynamicLinkPathLength: ShortDynamicLinkPathLength.unguessable),
-    );
+    //
+    // final Uri longDynamicUrl = await parameters.buildUrl();
+    //
+    // shortenedLink = await DynamicLinkParameters.shortenUrl(
+    //   longDynamicUrl,
+    //   new DynamicLinkParametersOptions(
+    //       shortDynamicLinkPathLength: ShortDynamicLinkPathLength.unguessable),
+    // );
 
     new Future.delayed(Duration.zero, () {
       shareLink =

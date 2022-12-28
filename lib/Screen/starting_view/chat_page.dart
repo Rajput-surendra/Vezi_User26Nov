@@ -1,9 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:entemarket_user/Helper/Constant.dart';
-import 'package:entemarket_user/Helper/Session.dart';
-import 'package:entemarket_user/Helper/String.dart';
 import 'package:file_picker/file_picker.dart';
 
 import 'package:flutter/material.dart';
@@ -17,6 +14,10 @@ import 'package:http/http.dart';
 import 'package:mime/mime.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
+
+import '../../Helper/Constant.dart';
+import '../../Helper/Session.dart';
+import '../../Helper/String.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({

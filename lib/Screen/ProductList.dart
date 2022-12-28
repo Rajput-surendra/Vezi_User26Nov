@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:entemarket_user/Helper/AppBtn.dart';
-import 'package:entemarket_user/Helper/SimBtn.dart';
-import 'package:entemarket_user/Provider/CartProvider.dart';
-import 'package:entemarket_user/Provider/FavoriteProvider.dart';
-import 'package:entemarket_user/Provider/UserProvider.dart';
+// import 'package:vezi/Helper/AppBtn.dart';
+// import 'package:vezi/Helper/SimBtn.dart';
+// import 'package:vezi/Provider/CartProvider.dart';
+// import 'package:vezi/Provider/FavoriteProvider.dart';
+// import 'package:vezi/Provider/UserProvider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -16,17 +16,22 @@ import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
+import '../Helper/AppBtn.dart';
 import '../Helper/Color.dart';
 import '../Helper/Constant.dart';
 import '../Helper/Session.dart';
+import '../Helper/SimBtn.dart';
 import '../Helper/String.dart';
 import '../Model/Section_Model.dart';
+import '../Provider/CartProvider.dart';
+import '../Provider/FavoriteProvider.dart';
+import '../Provider/UserProvider.dart';
 import 'HomePage.dart';
 import 'Login.dart';
 import 'Product_Detail.dart';
 
 class ProductList extends StatefulWidget {
-  final String? name, id;
+  final String? name, id,typeId;
   final bool? tag, fromSeller;
   final int? dis;
   String? subCatId;
@@ -39,6 +44,7 @@ class ProductList extends StatefulWidget {
       this.fromSeller,
       this.dis,
       this.subCatId,
+        this.typeId,
       required this.subList})
       : super(key: key);
 
@@ -133,6 +139,7 @@ class StateProduct extends State<ProductList> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    print("checking cat id  here ${widget.subCatId}");
     // userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
         appBar: widget.fromSeller! ? null : getAppBar(widget.name!, context),
@@ -1208,12 +1215,13 @@ class StateProduct extends State<ProductList> with TickerProviderStateMixin {
       LIMIT: perPage.toString(),
       OFFSET: offset.toString(),
       TOP_RETAED: top,
+
     };
     if (selId != null && selId != "") {
       parameter[ATTRIBUTE_VALUE_ID] = selId;
     }
     if (widget.tag!) parameter[TAG] = widget.name!;
-    parameter["seller_id"] = widget.id!;
+    parameter["seller_id"] = widget.id   == null || widget.id == "" ? "" : widget.id;
     parameter[CATID] = widget.subCatId ?? '';
     if (CUR_USERID != null) parameter[USER_ID] = CUR_USERID!;
 
@@ -1229,7 +1237,7 @@ class StateProduct extends State<ProductList> with TickerProviderStateMixin {
       parameter[MAXPRICE] = _currentRangeValues!.end.round().toString();
     }
 
-
+    print("this is new products ===========>>>>>> ${getProductApi} and ${parameter.toString()}");
 
     apiBaseHelper.postAPICall(getProductApi, parameter).then((getdata) {
       bool error = getdata["error"];
@@ -2276,7 +2284,7 @@ class StateProduct extends State<ProductList> with TickerProviderStateMixin {
                   MaterialPageRoute(
                     builder: (context) => ProductList(
                       name: tagList![i],
-                      id: widget.id!,
+                      id: widget.id.toString(),
                       subCatId: widget.subCatId,
                       tag: true,
                       fromSeller: false,

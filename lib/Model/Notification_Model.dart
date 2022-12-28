@@ -1,5 +1,7 @@
-import 'package:entemarket_user/Helper/String.dart';
+
 import 'package:intl/intl.dart';
+
+import '../Helper/String.dart';
 
 class NotificationModel {
   String? id, title, desc, img, typeId, date;

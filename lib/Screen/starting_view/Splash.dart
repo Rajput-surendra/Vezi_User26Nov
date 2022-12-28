@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:entemarket_user/Helper/app_assets.dart';
-import 'package:entemarket_user/Provider/SettingProvider.dart';
-import 'package:entemarket_user/Screen/Intro_Slider.dart';
+import 'package:vezi/Helper/app_assets.dart';
+import 'package:vezi/Provider/SettingProvider.dart';
+import 'package:vezi/Screen/Intro_Slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

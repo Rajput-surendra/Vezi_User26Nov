@@ -2,21 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:entemarket_user/Helper/AppBtn.dart';
-import 'package:entemarket_user/Helper/Color.dart';
-import 'package:entemarket_user/Helper/Constant.dart';
-import 'package:entemarket_user/Helper/Session.dart';
-import 'package:entemarket_user/Helper/SimBtn.dart';
-import 'package:entemarket_user/Helper/String.dart';
-import 'package:entemarket_user/Model/Section_Model.dart';
-import 'package:entemarket_user/Model/vendor_model.dart';
-import 'package:entemarket_user/Provider/CartProvider.dart';
-import 'package:entemarket_user/Provider/FavoriteProvider.dart';
-import 'package:entemarket_user/Provider/UserProvider.dart';
-import 'package:entemarket_user/Screen/HomePage.dart';
-import 'package:entemarket_user/Screen/Login.dart';
-import 'package:entemarket_user/Screen/ProductList.dart';
-import 'package:entemarket_user/Screen/Product_Detail.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -25,6 +10,16 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
+import 'package:vezi/Helper/AppBtn.dart';
+import 'package:vezi/Helper/Color.dart';
+import 'package:vezi/Helper/Constant.dart';
+import 'package:vezi/Helper/Session.dart';
+import 'package:vezi/Screen/HomePage.dart';
+import 'package:vezi/Screen/ProductList.dart';
+
+import '../../Helper/SimBtn.dart';
+import '../../Helper/String.dart';
+import '../../Model/vendor_model.dart';
 
 
 class RestProductList extends StatefulWidget {

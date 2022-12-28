@@ -3,19 +3,19 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:entemarket_user/Helper/AppBtn.dart';
-import 'package:entemarket_user/Helper/SimBtn.dart';
-import 'package:entemarket_user/Provider/CartProvider.dart';
-import 'package:entemarket_user/Provider/FavoriteProvider.dart';
-import 'package:entemarket_user/Provider/UserProvider.dart';
-import 'package:entemarket_user/Screen/Cart.dart';
-import 'package:entemarket_user/Screen/HomePage.dart';
-import 'package:entemarket_user/Screen/Login.dart';
-import 'package:entemarket_user/Screen/Manage_Address.dart';
-import 'package:entemarket_user/Screen/ProductList.dart';
-import 'package:entemarket_user/Screen/Product_Detail.dart';
-import 'package:entemarket_user/Screen/Seller_Details.dart';
-import 'package:entemarket_user/Screen/starting_view/restaurent_product.dart';
+import 'package:vezi/Helper/AppBtn.dart';
+import 'package:vezi/Helper/SimBtn.dart';
+import 'package:vezi/Provider/CartProvider.dart';
+import 'package:vezi/Provider/FavoriteProvider.dart';
+import 'package:vezi/Provider/UserProvider.dart';
+import 'package:vezi/Screen/Cart.dart';
+import 'package:vezi/Screen/HomePage.dart';
+import 'package:vezi/Screen/Login.dart';
+import 'package:vezi/Screen/Manage_Address.dart';
+import 'package:vezi/Screen/ProductList.dart';
+import 'package:vezi/Screen/Product_Detail.dart';
+import 'package:vezi/Screen/Seller_Details.dart';
+import 'package:vezi/Screen/starting_view/restaurent_product.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -143,6 +143,7 @@ class StateProduct extends State<SellerView> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    print("final cat id here ${widget.id}");
     // userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
         appBar: getSimpleAppBar(widget.name!, context,show: widget.name!.toLowerCase().contains("pharmacy")?"data":null),
@@ -222,7 +223,7 @@ class StateProduct extends State<SellerView> with TickerProviderStateMixin {
   }
 
   Widget listItem(int index) {
-
+    print("cat id here ${widget.id}");
     if (index < vendorList.length) {
       VendorModel model = vendorList[index];
       return Padding(

@@ -2,16 +2,16 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:entemarket_user/Helper/ApiBaseHelper.dart';
-import 'package:entemarket_user/Helper/Color.dart';
-import 'package:entemarket_user/Helper/Session.dart';
-import 'package:entemarket_user/Helper/String.dart';
-import 'package:entemarket_user/Model/Section_Model.dart';
-import 'package:entemarket_user/Provider/FavoriteProvider.dart';
-import 'package:entemarket_user/Screen/Login.dart';
-import 'package:entemarket_user/Screen/ProductList.dart';
-import 'package:entemarket_user/Screen/Product_Detail.dart';
-import 'package:entemarket_user/Screen/Seller_Details.dart';
+import 'package:vezi/Helper/ApiBaseHelper.dart';
+import 'package:vezi/Helper/Color.dart';
+import 'package:vezi/Helper/Session.dart';
+import 'package:vezi/Helper/String.dart';
+import 'package:vezi/Model/Section_Model.dart';
+import 'package:vezi/Provider/FavoriteProvider.dart';
+import 'package:vezi/Screen/Login.dart';
+import 'package:vezi/Screen/ProductList.dart';
+import 'package:vezi/Screen/Product_Detail.dart';
+import 'package:vezi/Screen/Seller_Details.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -63,6 +63,7 @@ class _SubCategoryState extends State<SubCategory> {
   @override
   Widget build(BuildContext context) {
     print(imageBase);
+    print("ok now here ${widget.catId}");
     return Scaffold(
       appBar: getAppBar(widget.title, context),
       body: SingleChildScrollView(
@@ -171,7 +172,7 @@ class _SubCategoryState extends State<SubCategory> {
               builder: (context) => ProductList(
                 name: widget.title,
                 id: widget.sellerId,
-                subCatId: '',
+                subCatId: widget.catId,
                 subList: subList,
                 tag: false,
                 fromSeller: false,

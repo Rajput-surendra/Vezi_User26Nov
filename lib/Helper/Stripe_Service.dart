@@ -2,8 +2,8 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:entemarket_user/Provider/SettingProvider.dart';
-import 'package:entemarket_user/Screen/Cart.dart';
+import 'package:vezi/Provider/SettingProvider.dart';
+import 'package:vezi/Screen/Cart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;

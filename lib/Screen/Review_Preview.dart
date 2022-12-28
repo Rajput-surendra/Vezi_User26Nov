@@ -1,13 +1,15 @@
-import 'package:entemarket_user/Helper/Color.dart';
-import 'package:entemarket_user/Screen/Product_Detail.dart';
+// import 'package:vezi/Helper/Color.dart';
+// import 'package:vezi/Screen/Product_Detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
+import '../Helper/Color.dart';
 import '../Helper/Session.dart';
 import '../Model/Section_Model.dart';
 import '../Model/User.dart';
+import 'Product_Detail.dart';
 
 class ReviewPreview extends StatefulWidget {
   final int? index;

@@ -3,56 +3,52 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:entemarket_user/Helper/ApiBaseHelper.dart';
-import 'package:entemarket_user/Helper/AppBtn.dart';
-import 'package:entemarket_user/Helper/Color.dart';
-import 'package:entemarket_user/Helper/Constant.dart';
-import 'package:entemarket_user/Helper/Session.dart';
-import 'package:entemarket_user/Helper/SimBtn.dart';
-import 'package:entemarket_user/Helper/String.dart';
-import 'package:entemarket_user/Helper/app_assets.dart';
-import 'package:entemarket_user/Helper/location_details.dart';
-import 'package:entemarket_user/Model/HealthCategoryModel.dart';
-import 'package:entemarket_user/Model/Model.dart';
-import 'package:entemarket_user/Model/Section_Model.dart';
-import 'package:entemarket_user/Model/city_model.dart';
-import 'package:entemarket_user/Provider/CartProvider.dart';
-import 'package:entemarket_user/Provider/CategoryProvider.dart';
-import 'package:entemarket_user/Provider/FavoriteProvider.dart';
-import 'package:entemarket_user/Provider/HomeProvider.dart';
-import 'package:entemarket_user/Provider/SettingProvider.dart';
-import 'package:entemarket_user/Provider/UserProvider.dart';
-import 'package:entemarket_user/Screen/NotificationLIst.dart';
-import 'package:entemarket_user/Screen/Search.dart';
-import 'package:entemarket_user/Screen/SellerList.dart';
-import 'package:entemarket_user/Screen/Seller_Details.dart';
-import 'package:entemarket_user/Screen/starting_view/SubCategory.dart';
 
-import 'package:entemarket_user/Screen/starting_view/feature_product.dart';
-import 'package:entemarket_user/Screen/starting_view/seller_list.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
+
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_place_picker_mb/google_maps_place_picker.dart';
 import 'package:http/http.dart';
 import 'package:package_info/package_info.dart';
 import 'package:permission_handler/permission_handler.dart';
-//import 'package:place_picker/entities/location_result.dart';
-//import 'package:place_picker/widgets/place_picker.dart' as picker;
+
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:version/version.dart';
+import 'package:vezi/Screen/starting_view/SubCategory.dart';
+import 'package:vezi/Screen/starting_view/feature_product.dart';
+import 'package:vezi/Screen/starting_view/seller_list.dart';
+import '../Helper/ApiBaseHelper.dart';
+import '../Helper/AppBtn.dart';
+import '../Helper/Color.dart';
+import '../Helper/Constant.dart';
+import '../Helper/Session.dart';
+import '../Helper/SimBtn.dart';
+import '../Helper/String.dart';
+import '../Helper/app_assets.dart';
+import '../Helper/location_details.dart';
+import '../Model/HealthCategoryModel.dart';
+import '../Model/Model.dart';
+import '../Model/Section_Model.dart';
+import '../Model/city_model.dart';
+import '../Provider/CartProvider.dart';
+import '../Provider/CategoryProvider.dart';
+import '../Provider/FavoriteProvider.dart';
+import '../Provider/HomeProvider.dart';
+import '../Provider/SettingProvider.dart';
+import '../Provider/UserProvider.dart';
 import 'Login.dart';
+import 'NotificationLIst.dart';
 import 'ProductList.dart';
 import 'Product_Detail.dart';
+import 'Search.dart';
 import 'SectionList.dart';
+import 'SellerList.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -225,7 +221,7 @@ class _HomePageState extends State<HomePage>
       ),
     );
 
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _animateSlider();
       _animateSlider1();
       _animateSlider2();
@@ -280,143 +276,141 @@ class _HomePageState extends State<HomePage>
                           ),
                           _catList(),
                           const SizedBox(height: 10,),
+                          pages.length>0?_slider(pages,0,_controller):const SizedBox(),
                         ],
                       ),
                     ),
-
-                    pages1.length>0?_slider(pages1,1,_controller1):const SizedBox(),
-
-                    Container(
-                      transform: Matrix4.translationValues(
-                          0.0, -mysize.height / 60, 0.0),
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
-                          borderRadius: BorderRadius.circular(10.0)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 5),
-                            child: Row(
-                              children: const [
-                                Text(
-                                  'Health & wellness',
-                                  style: TextStyle(fontWeight: FontWeight.w600,color: colors.primary,),
-                                ),
-                                Spacer(),
-                              ],
-                            ),
-                          ),
-                          healthCatList != null
-                              ? Container(
-                            height: 17.h,
-                            padding: const EdgeInsets.only(top: 10, left: 10),
-                            child: ListView.builder(
-                              itemCount: healthCatList.length,
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                              physics: const AlwaysScrollableScrollPhysics(),
-                              itemBuilder: (context, index) {
-                                  return Padding(
-                                    padding: const EdgeInsetsDirectional.only(end: 10),
-                                    child: GestureDetector(
-                                      onTap: () async {
-                                        if(healthCatList[index].name.toString().toLowerCase().contains("health")){
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) => SellerView(
-                                                  name: healthCatList[index].name,
-                                                  id: healthCatList[index].id,
-                                                  /*  tag: false,
-                                          fromSeller: false,*/
-                                                ),
-                                              ));
-                                          return;
-                                        }
-                                        // if(catList[index].name.toString().toLowerCase().contains("rest")){
-                                        //   Navigator.push(
-                                        //       context,
-                                        //       MaterialPageRoute(
-                                        //         builder: (context) => SellerView(
-                                        //           name: catList[index].name,
-                                        //           id: catList[index].id,
-                                        //           /*  tag: false,
-                                        //   fromSeller: false,*/
-                                        //         ),
-                                        //       ));
-                                        //   return;
-                                        // }
-                                        // Navigator.push(
-                                        //     context,
-                                        //     MaterialPageRoute(
-                                        //         builder: (context) => SellerList(
-                                        //           catId: catList[index].id,
-                                        //           catName: catList[index].name,
-                                        //           subId: catList[index].subList,
-                                        //           getByLocation: false,
-                                        //           sellerList: const [],
-                                        //         )));
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(color:  Theme.of(context)
-                                            .colorScheme.black,borderRadius: BorderRadius.circular(8.0)),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: <Widget>[
-                                            Padding(
-                                              padding: const EdgeInsetsDirectional.only(
-                                                  bottom: 5.0),
-                                              child: ClipRRect(
-                                                borderRadius: BorderRadius.circular(8.0),
-                                                child: FadeInImage(
-                                                  fadeInDuration: const Duration(milliseconds: 150),
-                                                  image: CachedNetworkImageProvider(
-                                                    "$imageUrl${healthCatList[index].image}",
-                                                  ),
-                                                  height: 11.h,
-                                                  width: 11.h,
-                                                  fit: BoxFit.cover,
-                                                  imageErrorBuilder:
-                                                      (context, error, stackTrace) =>
-                                                      erroWidget(50),
-                                                  placeholder: placeHolder(50),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              child: Text(
-                                                healthCatList[index].name!,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .caption!
-                                                    .copyWith(
-                                                    color: Theme.of(context)
-                                                        .colorScheme.white,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 10),
-                                                overflow: TextOverflow.ellipsis,
-                                                textAlign: TextAlign.center,
-                                              ),
-                                              width: 50,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  );
-
-                              },
-                            ),
-                          )
-                              : SizedBox(),
-                          // _catList(),
-                          const SizedBox(height: 10,),
-                        ],
-                      ),
-                    ),
+                    // Container(
+                    //   transform: Matrix4.translationValues(
+                    //       0.0, -mysize.height / 60, 0.0),
+                    //   decoration: BoxDecoration(
+                    //       color: Theme.of(context).cardColor,
+                    //       borderRadius: BorderRadius.circular(10.0)),
+                    //   child: Column(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: [
+                    //       Container(
+                    //         margin: const EdgeInsets.symmetric(
+                    //             horizontal: 10.0, vertical: 5),
+                    //         child: Row(
+                    //           children: const [
+                    //             Text(
+                    //               'Health & wellness',
+                    //               style: TextStyle(fontWeight: FontWeight.w600,color: colors.primary,),
+                    //             ),
+                    //             Spacer(),
+                    //           ],
+                    //         ),
+                    //       ),
+                    //       healthCatList != null
+                    //           ? Container(
+                    //         height: 17.h,
+                    //         padding: const EdgeInsets.only(top: 10, left: 10),
+                    //         child: ListView.builder(
+                    //           itemCount: healthCatList.length,
+                    //           scrollDirection: Axis.horizontal,
+                    //           shrinkWrap: true,
+                    //           physics: const AlwaysScrollableScrollPhysics(),
+                    //           itemBuilder: (context, index) {
+                    //               return Padding(
+                    //                 padding: const EdgeInsetsDirectional.only(end: 10),
+                    //                 child: GestureDetector(
+                    //                   onTap: () async {
+                    //                     if(healthCatList[index].name.toString().toLowerCase().contains("health")){
+                    //                       Navigator.push(
+                    //                           context,
+                    //                           MaterialPageRoute(
+                    //                             builder: (context) => SellerView(
+                    //                               name: healthCatList[index].name,
+                    //                               id: healthCatList[index].id,
+                    //                               /*  tag: false,
+                    //                       fromSeller: false,*/
+                    //                             ),
+                    //                           ));
+                    //                       return;
+                    //                     }
+                    //                     // if(catList[index].name.toString().toLowerCase().contains("rest")){
+                    //                     //   Navigator.push(
+                    //                     //       context,
+                    //                     //       MaterialPageRoute(
+                    //                     //         builder: (context) => SellerView(
+                    //                     //           name: catList[index].name,
+                    //                     //           id: catList[index].id,
+                    //                     //           /*  tag: false,
+                    //                     //   fromSeller: false,*/
+                    //                     //         ),
+                    //                     //       ));
+                    //                     //   return;
+                    //                     // }
+                    //                     // Navigator.push(
+                    //                     //     context,
+                    //                     //     MaterialPageRoute(
+                    //                     //         builder: (context) => SellerList(
+                    //                     //           catId: catList[index].id,
+                    //                     //           catName: catList[index].name,
+                    //                     //           subId: catList[index].subList,
+                    //                     //           getByLocation: false,
+                    //                     //           sellerList: const [],
+                    //                     //         )));
+                    //                   },
+                    //                   child: Container(
+                    //                     decoration: BoxDecoration(color:  Theme.of(context)
+                    //                         .colorScheme.black,borderRadius: BorderRadius.circular(8.0)),
+                    //                     child: Column(
+                    //                       mainAxisAlignment: MainAxisAlignment.start,
+                    //                       mainAxisSize: MainAxisSize.min,
+                    //                       children: <Widget>[
+                    //                         Padding(
+                    //                           padding: const EdgeInsetsDirectional.only(
+                    //                               bottom: 5.0),
+                    //                           child: ClipRRect(
+                    //                             borderRadius: BorderRadius.circular(8.0),
+                    //                             child: FadeInImage(
+                    //                               fadeInDuration: const Duration(milliseconds: 150),
+                    //                               image: CachedNetworkImageProvider(
+                    //                                 "$imageUrl${healthCatList[index].image}",
+                    //                               ),
+                    //                               height: 11.h,
+                    //                               width: 11.h,
+                    //                               fit: BoxFit.cover,
+                    //                               imageErrorBuilder:
+                    //                                   (context, error, stackTrace) =>
+                    //                                   erroWidget(50),
+                    //                               placeholder: placeHolder(50),
+                    //                             ),
+                    //                           ),
+                    //                         ),
+                    //                         SizedBox(
+                    //                           child: Text(
+                    //                             healthCatList[index].name!,
+                    //                             style: Theme.of(context)
+                    //                                 .textTheme
+                    //                                 .caption!
+                    //                                 .copyWith(
+                    //                                 color: Theme.of(context)
+                    //                                     .colorScheme.white,
+                    //                                 fontWeight: FontWeight.w600,
+                    //                                 fontSize: 10),
+                    //                             overflow: TextOverflow.ellipsis,
+                    //                             textAlign: TextAlign.center,
+                    //                           ),
+                    //                           width: 50,
+                    //                         ),
+                    //                       ],
+                    //                     ),
+                    //                   ),
+                    //                 ),
+                    //               );
+                    //
+                    //           },
+                    //         ),
+                    //       )
+                    //           : SizedBox(),
+                    //       // _catList(),
+                    //       const SizedBox(height: 10,),
+                    //     ],
+                    //   ),
+                    // ),
 
                    saveButton("Feature Products", () {
                       if(CUR_USERID != null){
@@ -921,7 +915,8 @@ class _HomePageState extends State<HomePage>
                 MaterialPageRoute(
                   builder: (context) => ProductList(
                     name: item.name,
-                    id: item.id,
+                    id: item.seller_id,
+                    subCatId: item.id,
                     tag: false,
                     subList: const [],
                     fromSeller: false,
@@ -1496,10 +1491,11 @@ class _HomePageState extends State<HomePage>
 
       getSetting();
       getHealthCat();
-      getSlider();
+       getSlider();
       getSecondSlider();
       getThirdSlider();
       getCat();
+
       getSeller();
       getSection();
       getOfferImages();
@@ -1901,7 +1897,7 @@ class _HomePageState extends State<HomePage>
                 MaterialPageRoute(
                   builder: (context) => ProductList(
                     name: item.name,
-                    id: item.id,
+                    id: item.seller_id,
                     tag: false,
                     fromSeller: false,
                     subList: const [],
@@ -2511,7 +2507,8 @@ setState(() {
                                                 .seller_id
                                                 .toString(),
                                             sellerData: sellerList[index],
-                                            catId: sellerList[index].category_ids!.contains(",")?sellerList[index].category_ids!.split(",")[0]:sellerList[index].category_ids!,
+                                            catId: sellerList[index].id
+                                            //sellerList[index].category_ids!.contains(",")?sellerList[index].category_ids!.split(",")[0]:sellerList[index].category_ids!,
                                           )));
                                 } else {
                                   setSnackbar("Store is Closed", context);

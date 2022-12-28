@@ -1,12 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:entemarket_user/Helper/Color.dart';
-import 'package:entemarket_user/Helper/Constant.dart';
-import 'package:entemarket_user/Helper/app_assets.dart';
-import 'package:entemarket_user/Helper/cropped_container.dart';
-import 'package:entemarket_user/Provider/SettingProvider.dart';
-import 'package:entemarket_user/Screen/Set_Password.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +12,15 @@ import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:vezi/Helper/Color.dart';
 import '../Helper/AppBtn.dart';
+import '../Helper/Constant.dart';
 import '../Helper/Session.dart';
 import '../Helper/String.dart';
+import '../Helper/app_assets.dart';
+import '../Helper/cropped_container.dart';
+import '../Provider/SettingProvider.dart';
+import 'Set_Password.dart';
 import 'SignUp.dart';
 
 class VerifyOtp extends StatefulWidget {

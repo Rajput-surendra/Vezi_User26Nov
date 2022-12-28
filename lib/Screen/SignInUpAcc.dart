@@ -1,8 +1,4 @@
-import 'package:entemarket_user/Helper/Session.dart';
-import 'package:entemarket_user/Helper/String.dart';
-import 'package:entemarket_user/Helper/app_assets.dart';
-import 'package:entemarket_user/Screen/Dashboard.dart';
-import 'package:entemarket_user/Screen/Login.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,6 +6,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../Helper/Color.dart';
+import '../Helper/Session.dart';
+import '../Helper/String.dart';
+import '../Helper/app_assets.dart';
+import 'Dashboard.dart';
+import 'Login.dart';
 import 'SendOtp.dart';
 
 class SignInUpAcc extends StatefulWidget {

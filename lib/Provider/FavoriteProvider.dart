@@ -1,5 +1,7 @@
-import 'package:entemarket_user/Model/Section_Model.dart';
+// import 'package:vezi/Model/Section_Model.dart';
 import 'package:flutter/cupertino.dart';
+
+import '../Model/Section_Model.dart';
 
 class FavoriteProvider extends ChangeNotifier {
   List<Product> _favList = [];

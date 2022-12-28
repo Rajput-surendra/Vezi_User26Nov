@@ -1,8 +1,11 @@
-import 'package:entemarket_user/Helper/String.dart';
-import 'package:entemarket_user/Provider/UserProvider.dart';
+// import 'package:vezi/Helper/String.dart';
+// import 'package:vezi/Provider/UserProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../Helper/String.dart';
+import 'UserProvider.dart';
 
 class SettingProvider {
   late SharedPreferences _sharedPreferences;

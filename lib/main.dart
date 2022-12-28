@@ -1,33 +1,42 @@
 import 'dart:io';
 import 'package:country_code_picker/country_localizations.dart';
-import 'package:entemarket_user/Helper/Color.dart';
-import 'package:entemarket_user/Helper/Constant.dart';
-import 'package:entemarket_user/Provider/CartProvider.dart';
-import 'package:entemarket_user/Provider/CategoryProvider.dart';
-import 'package:entemarket_user/Provider/FavoriteProvider.dart';
-import 'package:entemarket_user/Provider/HomeProvider.dart';
-import 'package:entemarket_user/Provider/ProductDetailProvider.dart';
-import 'package:entemarket_user/Provider/UserProvider.dart';
-import 'package:entemarket_user/Screen/starting_view/Splash.dart';
-import 'package:entemarket_user/Screen/starting_view/welcome_one.dart';
+// import 'package:vezi/Helper/Color.dart';
+// import 'package:vezi/Helper/Constant.dart';
+// import 'package:vezi/Provider/CartProvider.dart';
+// import 'package:vezi/Provider/CategoryProvider.dart';
+// import 'package:vezi/Provider/FavoriteProvider.dart';
+// import 'package:vezi/Provider/HomeProvider.dart';
+// import 'package:vezi/Provider/ProductDetailProvider.dart';
+// import 'package:vezi/Provider/UserProvider.dart';
+// import 'package:vezi/Screen/starting_view/Splash.dart';
+// import 'package:vezi/Screen/starting_view/welcome_one.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
+// import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
+import 'Helper/Color.dart';
+import 'Helper/Constant.dart';
 import 'Helper/Demo_Localization.dart';
 import 'Helper/PushNotificationService.dart';
 import 'Helper/Session.dart';
 import 'Helper/String.dart';
+import 'Provider/CartProvider.dart';
+import 'Provider/CategoryProvider.dart';
+import 'Provider/FavoriteProvider.dart';
+import 'Provider/HomeProvider.dart';
+import 'Provider/ProductDetailProvider.dart';
 import 'Provider/Theme.dart';
 import 'Provider/SettingProvider.dart';
+import 'Provider/UserProvider.dart';
 import 'Provider/order_provider.dart';
 import 'Screen/Dashboard.dart';
+import 'Screen/starting_view/welcome_one.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -70,7 +79,7 @@ void main() async {
 }
 
 Future<void> initializedDownload() async {
-  await FlutterDownloader.initialize(debug: false);
+  // await FlutterDownloader.initialize(debug: false);
 }
 
 final GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey =

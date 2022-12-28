@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:entemarket_user/Helper/ApiBaseHelper.dart';
-import 'package:entemarket_user/Helper/Razorpay.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 import 'package:http/http.dart' as http;
 
+import '../../Helper/ApiBaseHelper.dart';
+import '../../Helper/Razorpay.dart';
 import '../../Helper/Session.dart';
 import '../../Helper/String.dart';
 import '../../Helper/my_new_helper.dart';

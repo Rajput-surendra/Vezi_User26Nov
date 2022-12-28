@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:entemarket_user/Helper/Session.dart';
+// import 'package:vezi/Helper/Session.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -12,6 +12,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../Helper/AppBtn.dart';
 import '../Helper/Color.dart';
 import '../Helper/Constant.dart';
+import '../Helper/Session.dart';
 import '../Helper/String.dart';
 
 class PrivacyPolicy extends StatefulWidget {

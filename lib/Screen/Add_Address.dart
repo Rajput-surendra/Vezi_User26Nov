@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
 import 'dart:io';
-import 'package:entemarket_user/Helper/Constant.dart';
-import 'package:entemarket_user/Helper/Session.dart';
-import 'package:entemarket_user/Provider/SettingProvider.dart';
-import 'package:entemarket_user/Screen/HomePage.dart';
-import 'package:entemarket_user/Screen/Map.dart';
+// import 'package:vezi/Helper/Constant.dart';
+// import 'package:vezi/Helper/Session.dart';
+// import 'package:vezi/Provider/SettingProvider.dart';
+// import 'package:vezi/Screen/HomePage.dart';
+// import 'package:vezi/Screen/Map.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geocoding/geocoding.dart';
@@ -17,9 +17,13 @@ import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import '../Helper/AppBtn.dart';
 import '../Helper/Color.dart';
+import '../Helper/Constant.dart';
+import '../Helper/Session.dart';
 import '../Helper/String.dart';
 import '../Model/User.dart';
+import '../Provider/SettingProvider.dart';
 import 'Cart.dart';
+import 'HomePage.dart';
 
 class AddAddress extends StatefulWidget {
   final bool? update;
@@ -1149,7 +1153,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                   delCharge = 0;
                 }
 
-                totalPrice = totalPrice - delCharge;
+                totalPrice = totalPrice - delChrge;
               }
 
               User value = User.fromAddress(data[0]);
@@ -1167,7 +1171,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                 } else {
                   delCharge = 0;
                 }
-                totalPrice = totalPrice + delCharge + txtAmt;
+                totalPrice = totalPrice + delChrge + txtAmt;
               }
             }
           } else {
@@ -1191,7 +1195,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                   delCharge = 0;
                 }
 
-                totalPrice = totalPrice - delCharge;
+                totalPrice = totalPrice - delChrge;
               }
 
               selectedAddress = widget.index;
@@ -1205,7 +1209,7 @@ class StateAddress extends State<AddAddress> with TickerProviderStateMixin {
                 } else {
                   delCharge = 0;
                 }
-                totalPrice = totalPrice + delCharge;
+                totalPrice = totalPrice + delChrge;
               }
             }
           }

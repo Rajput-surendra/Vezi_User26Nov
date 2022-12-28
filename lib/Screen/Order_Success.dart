@@ -1,8 +1,10 @@
-import 'package:entemarket_user/Helper/Color.dart';
-import 'package:entemarket_user/Helper/Session.dart';
+// import 'package:vezi/Helper/Color.dart';
+// import 'package:vezi/Helper/Session.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../Helper/Color.dart';
+import '../Helper/Session.dart';
 import '../Helper/String.dart';
 
 class OrderSuccess extends StatefulWidget {

@@ -1,9 +1,10 @@
-import 'package:entemarket_user/Helper/Color.dart';
+// import 'package:vezi/Helper/Color.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:vezi/Helper/Color.dart';
 import 'package:video_player/video_player.dart';
 import '../Helper/vimeoplayer.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+// import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../Helper/Session.dart';
 import 'HomePage.dart';
@@ -41,7 +42,7 @@ class StatePreview extends State<ProductPreview> {
   late List<ScrollController> scrollControllers = [];
 
   late int curPos = widget.pos!;
-  YoutubePlayerController? _controller;
+  // YoutubePlayerController? _controller;
   VideoPlayerController? _videoController;
 
   void initScrollControllers() {
@@ -58,17 +59,18 @@ class StatePreview extends State<ProductPreview> {
     super.initState();
     initScrollControllers();
 
-    if (widget.from! && widget.videoType == "youtube") {
-      _controller = YoutubePlayerController(
-        initialVideoId: YoutubePlayer.convertUrlToId(widget.video!)!,
-        flags: YoutubePlayerFlags(
-            autoPlay: true,
-            mute: false,
-            forceHD: false,
-            loop: false,
-            disableDragSeek: true),
-      );
-    } else if (widget.from! &&
+    // if (widget.from! && widget.videoType == "youtube") {
+    //   _controller = YoutubePlayerController(
+    //     initialVideoId: YoutubePlayer.convertUrlToId(widget.video!)!,
+    //     flags: YoutubePlayerFlags(
+    //         autoPlay: true,
+    //         mute: false,
+    //         forceHD: false,
+    //         loop: false,
+    //         disableDragSeek: true),
+    //   );
+    // } else
+      if (widget.from! &&
         widget.videoType == "self_hosted" &&
         widget.video != "") {
       _videoController = VideoPlayerController.network(
@@ -90,7 +92,7 @@ class StatePreview extends State<ProductPreview> {
   @override
   void dispose() {
     super.dispose();
-    if (_controller != null) _controller!.dispose();
+    // if (_controller != null) _controller!.dispose();
     if (_videoController != null) _videoController!.dispose();
   }
 
@@ -144,7 +146,7 @@ class StatePreview extends State<ProductPreview> {
   @override
   void deactivate() {
     // Pauses video while navigating to next page.
-    if (_controller != null) _controller!.pause();
+    // if (_controller != null) _controller!.pause();
     super.deactivate();
   }
 
@@ -341,19 +343,21 @@ class StatePreview extends State<ProductPreview> {
                         widget.from! &&
                         widget.videoType != null &&
                         widget.video != "") {
-                      if (widget.videoType == "youtube") {
-                        _controller!.reset();
-                        print("testing1");
-                        return SafeArea(
-                          child: YoutubePlayer(
-                            controller: _controller!,
-                            showVideoProgressIndicator: true,
-                            progressIndicatorColor:
-                                Theme.of(context).colorScheme.fontColor,
-                            liveUIColor: colors.primary,
-                          ),
-                        );
-                      } else if (widget.videoType == "vimeo") {
+                      // if (widget.videoType == "youtube") {
+                      //   _controller!.reset();
+                      //   print("testing1");
+                      //   return SafeArea(
+                      //     child: YoutubePlayer(
+                      //       controller: _controller!,
+                      //       showVideoProgressIndicator: true,
+                      //       progressIndicatorColor:
+                      //           Theme.of(context).colorScheme.fontColor,
+                      //       liveUIColor: colors.primary,
+                      //     ),
+                      //   );
+                      // } else
+
+                        if (widget.videoType == "vimeo") {
                         print("testing2");
                         List<String> id =
                             widget.video!.split("https://vimeo.com/");

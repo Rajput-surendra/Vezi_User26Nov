@@ -1,21 +1,27 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:entemarket_user/Helper/Color.dart';
-import 'package:entemarket_user/Helper/String.dart';
-import 'package:entemarket_user/Provider/CategoryProvider.dart';
-import 'package:entemarket_user/Provider/HomeProvider.dart';
-import 'package:entemarket_user/Screen/SellerList.dart';
-import 'package:entemarket_user/Screen/SubCategory.dart';
-import 'package:entemarket_user/Screen/starting_view/seller_list.dart';
+// import 'package:vezi/Helper/Color.dart';
+// import 'package:vezi/Helper/String.dart';
+// import 'package:vezi/Provider/CategoryProvider.dart';
+// import 'package:vezi/Provider/HomeProvider.dart';
+// import 'package:vezi/Screen/SellerList.dart';
+// import 'package:vezi/Screen/SubCategory.dart';
+// import 'package:vezi/Screen/starting_view/seller_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:vezi/Helper/Color.dart';
+import 'package:vezi/Screen/starting_view/seller_list.dart';
 
 import '../Helper/Session.dart';
+import '../Helper/String.dart';
 import '../Model/Section_Model.dart';
+import '../Provider/CategoryProvider.dart';
+import '../Provider/HomeProvider.dart';
 import 'HomePage.dart';
 import 'ProductList.dart';
+import 'SellerList.dart';
 
 class AllCategory extends StatefulWidget {
   @override

@@ -1,4 +1,6 @@
-import 'package:entemarket_user/Helper/String.dart';
+// import 'package:vezi/Helper/String.dart';
+
+import '../Helper/String.dart';
 
 class FaqsModel {
   String? id, question,answer,status;

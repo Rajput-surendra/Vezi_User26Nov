@@ -1,9 +1,12 @@
-import 'package:entemarket_user/Helper/ApiBaseHelper.dart';
-import 'package:entemarket_user/Helper/String.dart';
-import 'package:entemarket_user/Model/Order_Model.dart';
+// import 'package:vezi/Helper/ApiBaseHelper.dart';
+// import 'package:vezi/Helper/String.dart';
+// import 'package:vezi/Model/Order_Model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../Helper/ApiBaseHelper.dart';
+import '../Helper/String.dart';
+import '../Model/Order_Model.dart';
 import 'UserProvider.dart';
 
 class OrderProvider extends ChangeNotifier {

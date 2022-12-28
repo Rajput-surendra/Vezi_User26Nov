@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:entemarket_user/Model/Section_Model.dart';
-import 'package:entemarket_user/Provider/SettingProvider.dart';
-import 'package:entemarket_user/Screen/MyOrder.dart';
+import 'package:vezi/Model/Section_Model.dart';
+import 'package:vezi/Provider/SettingProvider.dart';
+import 'package:vezi/Screen/MyOrder.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';

@@ -1,7 +1,7 @@
-import 'package:entemarket_user/Helper/Session.dart';
-import 'package:entemarket_user/Helper/String.dart';
-import 'package:entemarket_user/Helper/app_assets.dart';
-import 'package:entemarket_user/Screen/SignInUpAcc.dart';
+import 'package:vezi/Helper/Session.dart';
+import 'package:vezi/Helper/String.dart';
+import 'package:vezi/Helper/app_assets.dart';
+import 'package:vezi/Screen/SignInUpAcc.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -50,7 +50,7 @@ class WelcomeTwoView extends StatelessWidget {
               Container(
                 margin: EdgeInsets.symmetric(horizontal: mysize.width / 10),
                 child: Text(
-                  "Vezi.com is a multivendor on-demand marketplace. Our services include the buying and selling of - Groceries, Food,  Pet supplies, Electronics, Furniture, Gifts, Fashion and more.",
+                  "Vezi.global is a multivendor on-demand marketplace. Our services include the buying and selling of - Groceries, Food,  Pet supplies, Electronics, Furniture, Gifts, Fashion and more.",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.w400),
                 ),

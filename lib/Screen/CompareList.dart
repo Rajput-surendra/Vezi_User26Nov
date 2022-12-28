@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:entemarket_user/Helper/Session.dart';
-import 'package:entemarket_user/Model/Section_Model.dart';
-import 'package:entemarket_user/Provider/ProductDetailProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../Helper/Color.dart';
+import '../Helper/Session.dart';
 import '../Helper/String.dart';
+import '../Model/Section_Model.dart';
+import '../Provider/ProductDetailProvider.dart';
 import 'Product_Detail.dart';
 
 class CompareList extends StatefulWidget {
@@ -22,7 +22,7 @@ class _CompareListState extends State<CompareList> {
   void initState() {
     List val = [];
 
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       List compareList = context.read<ProductDetailProvider>().compareList;
       for (int i = 0;
           i < context.read<ProductDetailProvider>().compareList.length;

@@ -1,15 +1,17 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:entemarket_user/Helper/AppBtn.dart';
+// import 'package:vezi/Helper/AppBtn.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../Helper/AppBtn.dart';
+import '../Helper/Session.dart';
 import 'Chat.dart';
 import '../Helper/Color.dart';
-import 'package:entemarket_user/Helper/Session.dart';
+// import 'package:vezi/Helper/Session.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart'as http;
@@ -48,6 +50,21 @@ class _CustomerSupportState extends State<CustomerSupport>
   int total = 0, curEdit = -1;
   bool isLoadingmore = true;
   File? aadharImage;
+  List? ticketImageData ;
+  var images;
+
+
+  final ImagePicker imgpicker = ImagePicker();
+  List<PickedFile> imageList = [];
+  final List<File> _image = [];
+
+  addImage(PickedFile _image){
+    setState(() {
+      imageList.add(_image);
+    });
+  }
+
+  List<String> selectedImageList = [];
 
   @override
   void initState() {
@@ -151,14 +168,16 @@ class _CustomerSupportState extends State<CustomerSupport>
                                           setEmail(),
                                           setTitle(),
                                           setDesc(),
-                                          uploadImages(),
+                                          UploadImage(),
                                           Row(
                                             children: [
                                               edit
                                                   ? statusDropDown()
                                                   : Container(),
                                               Spacer(),
-                                              sendButton(),
+                                              sendButton(
+
+                                              ),
                                             ],
                                           )
                                         ],
@@ -176,18 +195,22 @@ class _CustomerSupportState extends State<CustomerSupport>
                                         ? ticketList.length + 1
                                         : ticketList.length,
                                     itemBuilder: (context, index) {
-                                      return (index == ticketList.length &&
+
+                                        return (index == ticketList.length &&
                                               isLoadingmore)
                                           ? Center(
                                               child:
                                                   CircularProgressIndicator())
                                           : ticketItem(index);
+
+
                                     })
                                 : Container(
                                     height: deviceHeight! -
                                         kToolbarHeight -
                                         MediaQuery.of(context).padding.top,
-                                    child: getNoItem(context))
+                                    child: getNoItem(context)),
+
                           ],
                         ),
                       )),
@@ -256,8 +279,11 @@ class _CustomerSupportState extends State<CustomerSupport>
   Future<void> checkNetwork() async {
     bool avail = await isNetworkAvailable();
     if (avail) {
-      // sendRequest();
-      sendRequest1();
+        // sendRequest();
+       // sendRequest1();
+      sendNewRequest();
+
+
     } else {
       Future.delayed(Duration(seconds: 2)).then((_) async {
         if (mounted)
@@ -415,18 +441,131 @@ class _CustomerSupportState extends State<CustomerSupport>
       ),
     );
   }
-  uploadImages(){
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 5.0, bottom: 5),
-          child: Text("Images",
-            style: TextStyle(
-                fontSize: 15,
-                color: colors.primary
-            ),),
+  // uploadImages(){
+  //   return Column(
+  //     children: [
+  //       Padding(
+  //         padding: const EdgeInsets.only(left: 5.0, bottom: 5),
+  //         child: Text("Images",
+  //           style: TextStyle(
+  //               fontSize: 15,
+  //               color: colors.primary
+  //           ),),
+  //       ),
+  //       imageAadhar(),
+  //     ],
+  //   );
+  // }
+
+
+  Widget UploadImage(){
+    return  Column(
+      children: <Widget>[
+        InkWell(
+          onTap: () async {
+            var _image =
+            await ImagePicker.platform.pickImage(source: ImageSource.camera);
+            print(_image!.path);
+            addImage(_image);
+
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Container(
+              height: 45,
+              decoration: BoxDecoration(
+                  color:colors.primary,
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              child: Center(child: Text("Upload Images")),
+            ),
+          ),
         ),
-        imageAadhar(),
+        // MaterialButton(
+        //   child: Text("Add Image:  ${imageList.length}"),
+        //   onPressed: () async {
+        //     var _image =
+        //     await ImagePicker.platform.pickImage(source: ImageSource.camera);
+        //     print(_image!.path);
+        //     addImage(_image);
+        //   },
+        // ),
+        ListView.builder(
+            shrinkWrap: true,
+            physics: ScrollPhysics(),
+            itemCount: imageList.length,
+            itemBuilder: (context, index) {
+              return InkWell(
+                  onTap: () {
+                    //return null;
+                    if(selectedImageList.contains(imageList[index].path)){
+                      setState((){
+                        selectedImageList.remove(imageList[index].path);
+                      });
+                      print("selected removed ${selectedImageList.length}");
+                    }else{
+                      setState(() {
+                        selectedImageList.add(imageList[index].path);
+                      });
+                      print("selected add ${selectedImageList.length}");
+                    }
+                  },
+                  child: Padding(
+                    padding:  EdgeInsets.only(left: 14,right: 14),
+                    child: Row(
+                      children: [
+                        Container(
+                            height:25,
+                            width: 25,
+                            alignment: Alignment.center,
+                            //padding: EdgeInsets.all(5),
+                            decoration:BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.black
+                                ),
+                                borderRadius: BorderRadius.circular(3)
+                            ),
+                            child:  selectedImageList.contains(imageList[index].path) ? Center(child: Icon(Icons.check)) : Container()
+                        ),
+                        Card(
+                          child:
+                          Stack(
+                            children: [
+                              Container(
+                                height: 150,
+                                width:250,
+                                child: Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Image.file(File(imageList[index].path),fit: BoxFit.fill,)
+                                ),
+                              ),
+                              Positioned(
+                                right: 2,
+                                child: InkWell(
+                                  onTap: (){
+                                    setState(() {
+                                      selectedImageList.remove(imageList[index].path);
+                                      imageList[index].path == null;
+                                    });
+                                  },
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+                                          color: colors.primary
+                                      ),
+                                      padding: EdgeInsets.all(5),
+                                      margin: EdgeInsets.only(top: 10,right: 10),
+                                      child: Icon(Icons.clear,color: colors.blackTemp,)),
+                                ),
+                              )
+                            ],
+
+                          ),
+                        ),
+                      ],
+                    ),
+                  ));
+            }),
       ],
     );
   }
@@ -435,7 +574,7 @@ class _CustomerSupportState extends State<CustomerSupport>
 
 
 
-  Widget imageAadhar() {
+ /* Widget imageAadhar() {
     return Material(
       elevation: 2,
       borderRadius: BorderRadius.circular(15),
@@ -444,8 +583,8 @@ class _CustomerSupportState extends State<CustomerSupport>
           uploadAadharFromCamOrGallary(context);
         },
         child: Container(
-           height:  aadharImage == null ? 130 : 400,
-           width: 400,
+          height: 130,
+          width: double.infinity,
           decoration: BoxDecoration(
               border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.circular(15)
@@ -453,11 +592,36 @@ class _CustomerSupportState extends State<CustomerSupport>
           child: ClipRRect(
             borderRadius: BorderRadius.circular(15),
             child: aadharImage != null ?
-            Image.file(aadharImage!, fit: BoxFit.fill)
+            Stack(
+              children: [
+                Container(
+                    width: double.infinity,
+                    child: Image.file(aadharImage!, fit: BoxFit.fill)),
+                Align(alignment: Alignment.topRight,
+                    child: InkWell(
+                      onTap: (){
+                        setState(() {
+                          aadharImage = null;
+                        });
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(5),
+                        margin: EdgeInsets.only(top: 10,right: 10),
+                        decoration: BoxDecoration(
+                            color: colors.primary,
+                            borderRadius: BorderRadius.circular(100)
+                        ),
+                        child: Icon(
+                          Icons.clear,color: Colors.white,
+                        ),
+                      ),
+                    ))
+              ],
+            )
                 : Column(
               children: [
                 Icon(Icons.person, size: 60),
-                Text("Upload Imaages")
+                Text("Upload Images")
               ],
             ),
           ),
@@ -538,7 +702,7 @@ class _CustomerSupportState extends State<CustomerSupport>
         // filePath = imagePath!.path.toString();
       });
     }
-  }
+  }*/
 
   _fieldFocusChange(
       BuildContext context, FocusNode currentFocus, FocusNode? nextFocus) {
@@ -581,7 +745,8 @@ class _CustomerSupportState extends State<CustomerSupport>
         });
     }
   }
-
+  var i;
+  var j ;
   Future<void> getTicket() async {
     _isNetworkAvail = await isNetworkAvailable();
     if (_isNetworkAvail) {
@@ -590,6 +755,8 @@ class _CustomerSupportState extends State<CustomerSupport>
           USER_ID: CUR_USERID,
           LIMIT: perPage.toString(),
           OFFSET: offset.toString(),
+
+
         };
 
         Response response =
@@ -597,7 +764,7 @@ class _CustomerSupportState extends State<CustomerSupport>
                 .timeout(Duration(seconds: timeOut));
         print(getTicketApi.toString());
         print(parameter.toString());
-    print("sssssss ${response.body}");
+       print("sssssss ${response.body}");
         var getdata = json.decode(response.body);
         bool error = getdata["error"];
         String? msg = getdata["message"];
@@ -608,11 +775,24 @@ class _CustomerSupportState extends State<CustomerSupport>
           if ((offset) < total) {
             tempList.clear();
             var data = getdata["data"];
+            ticketImageData = data;
             tempList = (data as List)
                 .map((data) => new Model.fromTicket(data))
                 .toList();
-              print("templist here ${tempList[0]}");
             ticketList.addAll(tempList);
+
+            for(i = 0; i<= ticketList[i].image!.length; i++  ) {
+
+              for (j = 0; j <= ticketList[i].image!.length; j++) {
+                setState((){
+                  images = ticketList[i].image;
+                });
+
+              }
+            }
+
+            print("templist here ${data[0]['image']}");
+
 
             offset = offset + perPage;
           }
@@ -653,10 +833,13 @@ class _CustomerSupportState extends State<CustomerSupport>
         title: getTranslated(context, 'SEND'),
         onBtnSelected: () {
           validateAndSubmit();
+           // aadharImage = null;
         });
   }
 
   Future<void> sendRequest() async {
+    // List? fileDate = aadharImage!.path.split("/data/user/0/com.vezi.user/cache/");
+    // print("pppppppapapappappa=====${fileDate[1]} ");
     if (mounted)
       setState(() {
         _isProgress = true;
@@ -669,11 +852,14 @@ class _CustomerSupportState extends State<CustomerSupport>
         DESC: desc,
         TICKET_TYPE: type,
         EMAIL: email,
+        "image": aadharImage == null ? null : aadharImage!.path.toString()
+
 
       };
       if (edit) {
         data[TICKET_ID] = id;
         data[STATUS] = status;
+
       }
 
       Response response = await post(edit ? editTicketApi : addTicketApi,
@@ -736,9 +922,12 @@ class _CustomerSupportState extends State<CustomerSupport>
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
+      aadharImage = null;
      final  Result = await response.stream.bytesToString();
-     final finalResult = Model.fromTicket(jsonDecode(Result));
-     print("FFFFFFFFFFFF${finalResult}");
+     clearAll();
+     setSnackbar("Ticket added Successfully!");
+     // final finalResult = Model.fromTicket(jsonDecode(Result));
+      print("FFFFFFFFFFFF${Result}");
 
      // ticketList.add(finalResult);
 
@@ -749,11 +938,56 @@ class _CustomerSupportState extends State<CustomerSupport>
 
   }
 
+  Future<void> sendNewRequest() async{
+    var headers = {
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzEwODI4NTUsImlhdCI6MTY3MTA4MjU1NSwiaXNzIjoiZXNob3AifQ.c-AZjRIhuXxqMsc0T0UfuRozNDJheqd8eE7NE6AUlGw',
+      'Cookie': 'ci_session=e18d36378c37302da3a8e264fb41cddf65e0a887'
+    };
+    var request = http.MultipartRequest('POST', Uri.parse(edit ?"${baseUrl}/edit_ticket":'$baseUrl/add_ticket'));
+    request.fields.addAll({
+      'user_id': ' ${CUR_USERID}',
+      'subject': ' ${title}',
+      'description': '${desc}',
+      'ticket_type_id': '${type}',
+      'email': '${email}'
+    });
+
+    for(int i = 0;i<selectedImageList.length;i++ ){
+
+      selectedImageList == null ? null: request.files.add(await http.MultipartFile.fromPath('image[]', '${selectedImageList[i].toString()}'));
+    }
+    // request.files.add(await http.MultipartFile.fromPath('image[]', '/C:/Users/indian 5/Pictures/Screenshots/Screenshot_20221214_042157.png'));
+    // request.files.add(await http.MultipartFile.fromPath('image[]', '/C:/Users/indian 5/Pictures/Screenshots/Screenshot_20221214_103058.png'));
+    // request.files.add(await http.MultipartFile.fromPath('image[]', '/C:/Users/indian 5/Pictures/Screenshots/Screenshot_20221215_054915.png'));
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      setState((){
+        imageList.clear();
+        selectedImageList.clear();
+      });
+      final  Result = await response.stream.bytesToString();
+      clearAll();
+      setSnackbar("Ticket added Successfully!");
+      // final finalResult = Model.fromTicket(jsonDecode(Result));
+      print("FFFFFFFFFFFF${Result}");
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+
+  }
+
+
+
   clearAll() {
     type = null;
     email = null;
     title = null;
     desc = null;
+    // ticketImageData = null;
     emailController.text = "";
     nameController.text = "";
     descController.text = "";
@@ -780,7 +1014,7 @@ class _CustomerSupportState extends State<CustomerSupport>
       status = "Close";
     }
 
-print("Images hare ------${ticketList[index].image}");
+print("Images hare ------${ticketList[index].image}&& ${ticketList[index].desc}");
     return Card(
       elevation: 0,
       child: InkWell(
@@ -832,15 +1066,32 @@ print("Images hare ------${ticketList[index].image}");
               Text(getTranslated(context, "DATE")! +
                   " : " +
                   ticketList[index].date!),
-              ticketList[index].image == null || ticketList[index].image == "" ? SizedBox.shrink():
-              Container(
-                height: 120,
-                width: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10)
-                ),
-                child: Image.network("${ticketList[index].image.toString()}"),
-              ),
+
+              ticketImageData![index]['image'] == null || ticketImageData![index]['image'] == "" ? SizedBox.shrink():
+                  SizedBox(height: 10,),
+
+             Container(
+               child: ListView.builder(
+                 shrinkWrap: true,
+                 itemCount: ticketImageData![index]['image'].length,
+                   itemBuilder: (context, j ){
+                 return  Container(
+                   height: 150,
+                   width: 150,
+                   margin: EdgeInsets.only(bottom: 5),
+                   decoration: BoxDecoration(
+                       borderRadius: BorderRadius.circular(10)
+                   ),
+                   child: ClipRRect(
+                       borderRadius: BorderRadius.all(Radius.circular(10)),
+                       child: Image.network(
+                         // images![j].toString()
+                         ticketImageData![index]['image'][j].toString()
+                         ,fit: BoxFit.fill,)),
+                 );
+               }),
+             )
+             ,
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: Row(
@@ -875,6 +1126,7 @@ print("Images hare ------${ticketList[index].image}");
                             nameController.text = ticketList[index].title!;
                             descController.text = ticketList[index].desc!;
                             type = ticketList[index].typeId;
+                            // ticketImageData = ticketList[index].image
                           });
                         }),
                     GestureDetector(

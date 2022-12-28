@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:entemarket_user/Helper/app_assets.dart';
-import 'package:entemarket_user/Helper/my_new_helper.dart';
-import 'package:entemarket_user/Screen/starting_view/welcome_two.dart';
+import 'package:vezi/Helper/app_assets.dart';
+import 'package:vezi/Helper/my_new_helper.dart';
+import 'package:vezi/Screen/starting_view/welcome_two.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -57,7 +57,7 @@ class _WelcomeOneViewState extends State<WelcomeOneView> {
               Container(
                 margin: EdgeInsets.symmetric(horizontal: mysize.width / 10),
                 child: Text(
-                  "Vezi is an On Demand Ecommerce Marketplace",
+                  "Vezi is a multivendor on-demand marketplace. Our Services include the buying and selling of Fruits, vegetables, groceries, dried fruits, and more.",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w600,color: Colors.black),
                 ),

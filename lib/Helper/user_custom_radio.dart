@@ -1,4 +1,4 @@
-import 'package:entemarket_user/Model/User.dart';
+import 'package:vezi/Model/User.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,4 @@
-import 'package:entemarket_user/Helper/Constant.dart';
+import 'package:vezi/Helper/Constant.dart';
 final Uri getUserApi = Uri.parse(baseUrl + 'get_user_data');
 final Uri getUpdateApi = Uri.parse(baseUrl + 'update_fuid');
 final Uri getSellerApi = Uri.parse(baseUrl + 'get_sellers');
@@ -50,6 +50,7 @@ final Uri updateOrderApi = Uri.parse(baseUrl + 'update_order_status');
 final Uri updateOrderItemApi = Uri.parse(baseUrl + 'update_order_item_status');
 final Uri paypalTransactionApi = Uri.parse(baseUrl + 'get_paypal_link');
 final Uri addTransactionApi = Uri.parse(baseUrl + 'add_transaction');
+final Uri getDeliveryApi = Uri.parse(baseUrl + 'get_delivery_charge');
 final Uri getJwtKeyApi = Uri.parse(baseUrl + 'get_jwt_key');
 final Uri getOfferImageApi = Uri.parse(baseUrl + 'get_offer_images');
 final Uri getFaqsApi = Uri.parse(baseUrl + 'get_faqs');

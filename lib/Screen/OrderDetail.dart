@@ -2,12 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
+// import 'package:downloads_path_provider_28/downloads_path_provider_28.dart';
 
-import 'package:entemarket_user/Helper/Session.dart';
-import 'package:entemarket_user/Model/Order_Model.dart';
-import 'package:entemarket_user/Provider/UserProvider.dart';
-import 'package:entemarket_user/Screen/Seller_Details.dart';
-import 'package:entemarket_user/Screen/starting_view/chat_page.dart';
+// import 'package:vezi/Helper/Session.dart';
+// import 'package:vezi/Model/Order_Model.dart';
+// import 'package:vezi/Provider/UserProvider.dart';
+// import 'package:vezi/Screen/Seller_Details.dart';
+// import 'package:vezi/Screen/starting_view/chat_page.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
@@ -23,13 +24,17 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:vezi/Screen/starting_view/chat_page.dart';
 import '../Helper/AppBtn.dart';
 import '../Helper/Color.dart';
 import '../Helper/Constant.dart';
+import '../Helper/Session.dart';
 import '../Helper/String.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 
+import '../Model/Order_Model.dart';
 import '../Model/Section_Model.dart';
+import 'Seller_Details.dart';
 
 class OrderDetail extends StatefulWidget {
   final OrderModel? model;
@@ -587,7 +592,7 @@ class StateOrder extends State<OrderDetail>
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => SellerProfile(
-                                sellerStoreName: orderItem!.store_name,
+                                sellerStoreName: orderItem.store_name,
                                 sellerRating: orderItem.seller_rating,
                                 sellerImage: orderItem.seller_profile,
                                 sellerName: orderItem.seller_name,
@@ -630,7 +635,7 @@ class StateOrder extends State<OrderDetail>
                                     decoration: TextDecoration.underline),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () async {
-                                    var url = "${orderItem!.tracking_url}";
+                                    var url = "${orderItem.tracking_url}";
 
                                     if (await canLaunch(url)) {
                                       await launch(url);

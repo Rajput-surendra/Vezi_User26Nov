@@ -1,13 +1,16 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:entemarket_user/Helper/Color.dart';
-import 'package:entemarket_user/Helper/Session.dart';
-import 'package:entemarket_user/Screen/Privacy_Policy.dart';
+// import 'package:vezi/Helper/Color.dart';
+// import 'package:vezi/Helper/Session.dart';
+// import 'package:vezi/Screen/Privacy_Policy.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:vezi/Helper/Color.dart';
 import '../Helper/AppBtn.dart';
 import '../Helper/Constant.dart';
+import '../Helper/Session.dart';
 import '../Helper/String.dart';
+import 'Privacy_Policy.dart';
 
 class Setting extends StatefulWidget {
   @override

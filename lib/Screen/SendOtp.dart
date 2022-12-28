@@ -3,12 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:entemarket_user/Helper/String.dart';
-import 'package:entemarket_user/Helper/app_assets.dart';
-import 'package:entemarket_user/Helper/cropped_container.dart';
-import 'package:entemarket_user/Provider/SettingProvider.dart';
-import 'package:entemarket_user/Screen/Privacy_Policy.dart';
-import 'package:entemarket_user/Screen/Verify_Otp.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,6 +15,11 @@ import '../Helper/AppBtn.dart';
 import '../Helper/Color.dart';
 import '../Helper/Constant.dart';
 import '../Helper/Session.dart';
+import '../Helper/String.dart';
+import '../Helper/app_assets.dart';
+import '../Provider/SettingProvider.dart';
+import 'Privacy_Policy.dart';
+import 'Verify_Otp.dart';
 
 class SendOtp extends StatefulWidget {
   String? title;
@@ -262,12 +262,45 @@ class _SendOtpState extends State<SendOtp> with TickerProviderStateMixin {
         ));
   }
 
+  // Widget setCountryCode() {
+  //   double width = deviceWidth!;
+  //   double height = deviceHeight! * 0.9;
+  //   return CountryCodePicker(
+  //       showCountryOnly: false,
+  //       enabled: false,
+  //       searchStyle: TextStyle(
+  //         color: Theme.of(context).colorScheme.fontColor,
+  //       ),
+  //       flagWidth: 20,
+  //       boxDecoration: BoxDecoration(
+  //         color: Theme.of(context).colorScheme.lightWhite,
+  //       ),
+  //       searchDecoration: InputDecoration(
+  //         hintText: getTranslated(context, 'COUNTRY_CODE_LBL'),
+  //         hintStyle: TextStyle(color: Theme.of(context).colorScheme.fontColor),
+  //         fillColor: Theme.of(context).colorScheme.fontColor,
+  //       ),
+  //       showOnlyCountryWhenClosed: false,
+  //       initialSelection: 'IN',
+  //       dialogSize: Size(width, height),
+  //       alignLeft: true,
+  //       textStyle: TextStyle(
+  //           color: Theme.of(context).colorScheme.fontColor,
+  //           fontWeight: FontWeight.bold),
+  //       onChanged: (CountryCode countryCode) {
+  //         countrycode = countryCode.toString().replaceFirst("+", "");
+  //         countryName = countryCode.name;
+  //       },
+  //       onInit: (code) {
+  //         countrycode = code.toString().replaceFirst("+", "");
+  //       });
+  // }
+
   Widget setCountryCode() {
     double width = deviceWidth!;
     double height = deviceHeight! * 0.9;
     return CountryCodePicker(
         showCountryOnly: false,
-        enabled: false,
         searchStyle: TextStyle(
           color: Theme.of(context).colorScheme.fontColor,
         ),

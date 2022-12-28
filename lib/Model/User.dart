@@ -1,5 +1,7 @@
-import 'package:entemarket_user/Helper/String.dart';
+// import 'package:vezi/Helper/String.dart';
 import 'package:intl/intl.dart';
+
+import '../Helper/String.dart';
 
 class User {
   String? username,

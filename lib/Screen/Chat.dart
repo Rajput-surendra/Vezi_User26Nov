@@ -4,11 +4,9 @@ import 'dart:io';
 import 'dart:isolate';
 import 'dart:ui';
 
-import 'package:entemarket_user/Provider/SettingProvider.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
+
 import 'package:http/http.dart' as http;
-import 'package:entemarket_user/Helper/Session.dart';
-import 'package:entemarket_user/Helper/String.dart';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -18,7 +16,10 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import '../Helper/Color.dart';
 import '../Helper/Constant.dart';
+import '../Helper/Session.dart';
+import '../Helper/String.dart';
 import '../Model/Model.dart';
+import '../Provider/SettingProvider.dart';
 
 class Chat extends StatefulWidget {
   final String? id, status;
@@ -44,7 +45,7 @@ class _ChatState extends State<Chat> {
     super.initState();
     downloadlist = <String?, String>{};
     CUR_TICK_ID = widget.id;
-    FlutterDownloader.registerCallback(downloadCallback);
+    // FlutterDownloader.registerCallback(downloadCallback);
     setupChannel();
 
     getMsg();
@@ -58,12 +59,12 @@ class _ChatState extends State<Chat> {
     super.dispose();
   }
 
-  static void downloadCallback(
-      String id, DownloadTaskStatus status, int progress) {
-    final SendPort send =
-        IsolateNameServer.lookupPortByName('downloader_send_port')!;
-    send.send([id, status, progress]);
-  }
+  // static void downloadCallback(
+  //     String id, DownloadTaskStatus status, int progress) {
+  //   final SendPort send =
+  //       IsolateNameServer.lookupPortByName('downloader_send_port')!;
+  //   send.send([id, status, progress]);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -235,13 +236,13 @@ class _ChatState extends State<Chat> {
       File file = File(_filePath + "/" + fileName);
       bool hasExisted = await file.exists();
 
-      if (downloadlist.containsKey(mid)) {
-        final tasks = await FlutterDownloader.loadTasksWithRawQuery(
-            query:
-                "SELECT status FROM task WHERE task_id=${downloadlist[mid]}");
-
-        if (tasks == 4 || tasks == 5) downloadlist.remove(mid);
-      }
+      // if (downloadlist.containsKey(mid)) {
+      //   final tasks = await FlutterDownloader.loadTasksWithRawQuery(
+      //       query:
+      //           "SELECT status FROM task WHERE task_id=${downloadlist[mid]}");
+      //
+      //   if (tasks == 4 || tasks == 5) downloadlist.remove(mid);
+      // }
 
       if (hasExisted) {
         final _openFile = await OpenFile.open(_filePath + "/" + fileName);
@@ -249,15 +250,15 @@ class _ChatState extends State<Chat> {
         setSnackbar(getTranslated(context, 'Downloading')!);
       } else {
         setSnackbar(getTranslated(context, 'Downloading')!);
-        final taskid = await FlutterDownloader.enqueue(
-            url: url,
-            savedDir: _filePath,
-            headers: {"auth": "test_for_sql_encoding"},
-            showNotification: true,
-            openFileFromNotification: true);
+        // final taskid = await FlutterDownloader.enqueue(
+        //     url: url,
+        //     savedDir: _filePath,
+        //     headers: {"auth": "test_for_sql_encoding"},
+        //     showNotification: true,
+        //     openFileFromNotification: true);
 
         setState(() {
-          downloadlist[mid] = taskid.toString();
+        //  downloadlist[mid] = taskid.toString();
         });
       }
     }

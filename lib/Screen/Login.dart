@@ -1,14 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
-import 'package:entemarket_user/Helper/ApiBaseHelper.dart';
-import 'package:entemarket_user/Helper/String.dart';
-import 'package:entemarket_user/Helper/app_assets.dart';
-import 'package:entemarket_user/Helper/cropped_container.dart';
-import 'package:entemarket_user/Provider/SettingProvider.dart';
-import 'package:entemarket_user/Provider/UserProvider.dart';
-import 'package:entemarket_user/Screen/SendOtp.dart';
-import 'package:entemarket_user/Screen/SignUp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,10 +16,16 @@ import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../Helper/ApiBaseHelper.dart';
 import '../Helper/AppBtn.dart';
 import '../Helper/Color.dart';
 import '../Helper/Constant.dart';
 import '../Helper/Session.dart';
+import '../Helper/String.dart';
+import '../Helper/app_assets.dart';
+import '../Provider/SettingProvider.dart';
+import '../Provider/UserProvider.dart';
+import 'SendOtp.dart';
 
 class Login extends StatefulWidget {
   @override

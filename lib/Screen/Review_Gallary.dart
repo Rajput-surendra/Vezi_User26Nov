@@ -1,11 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:entemarket_user/Helper/Session.dart';
-import 'package:entemarket_user/Helper/app_assets.dart';
-import 'package:entemarket_user/Screen/Review_Preview.dart';
+// import 'package:vezi/Helper/Session.dart';
+// import 'package:vezi/Helper/app_assets.dart';
+// import 'package:vezi/Screen/Review_Preview.dart';
 import 'package:flutter/material.dart';
 
+import '../Helper/Session.dart';
+import '../Helper/app_assets.dart';
 import '../Model/Section_Model.dart';
 import 'Product_Detail.dart';
+import 'Review_Preview.dart';
 
 class ReviewGallary extends StatefulWidget {
   final Product? model;

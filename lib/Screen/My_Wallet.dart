@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
-import 'package:entemarket_user/Provider/SettingProvider.dart';
-import 'package:entemarket_user/Provider/UserProvider.dart';
-import 'package:entemarket_user/Screen/PaypalWebviewActivity.dart';
+// import 'package:vezi/Provider/SettingProvider.dart';
+// import 'package:vezi/Provider/UserProvider.dart';
+// import 'package:vezi/Screen/PaypalWebviewActivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_paystack/flutter_paystack.dart';
@@ -23,6 +23,9 @@ import '../Helper/SimBtn.dart';
 import '../Helper/String.dart';
 import '../Helper/Stripe_Service.dart';
 import '../Model/Transaction_Model.dart';
+import '../Provider/SettingProvider.dart';
+import '../Provider/UserProvider.dart';
+import 'PaypalWebviewActivity.dart';
 
 class MyWallet extends StatefulWidget {
   @override

@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:entemarket_user/Helper/Color.dart';
-import 'package:entemarket_user/Helper/Session.dart';
-import 'package:entemarket_user/Helper/String.dart';
-import 'package:entemarket_user/Model/Section_Model.dart';
-import 'package:entemarket_user/Screen/starting_view/SubCategory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:sizer/sizer.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:vezi/Screen/starting_view/SubCategory.dart';
+import '../Helper/Color.dart';
+import '../Helper/Session.dart';
+import '../Helper/String.dart';
+import '../Model/Section_Model.dart';
 import 'HomePage.dart';
 import 'Seller_Details.dart';
 
@@ -81,6 +81,7 @@ class _SellerListState extends State<SellerList> {
   }
   @override
   Widget build(BuildContext context) {
+    print("cat id here ${widget.catId}");
     return Scaffold(
         appBar: getAppBar(widget.catName!=""?widget.catName:getTranslated(context, 'SHOP_BY_SELLER')!, context),
         body: !loading&&sellerList.length>0?ListView.builder(
@@ -224,7 +225,7 @@ class _SellerListState extends State<SellerList> {
                                   .seller_id
                                   .toString(),
                               sellerData: sellerList[index],
-                              catId: sellerList[index].category_ids!.contains(",")?sellerList[index].category_ids!.split(",")[0]:sellerList[index].category_ids!,
+                              catId: widget.catId
                             )));
                   } else{
                     setSnackbar("Seller Closed");
@@ -293,6 +294,7 @@ class _SellerListState extends State<SellerList> {
                       sellerName: sellerList[index].seller_name ?? "",
                       sellerID: sellerList[index].seller_id,
                       storeDesc: sellerList[index].store_description,
+                  subCatId: widget.catId,
                     )));
       },
     );

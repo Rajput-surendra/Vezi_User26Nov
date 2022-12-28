@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:entemarket_user/Helper/String.dart';
-import 'package:entemarket_user/Helper/app_assets.dart';
-import 'package:entemarket_user/Helper/cropped_container.dart';
-import 'package:entemarket_user/Screen/Login.dart';
+// import 'package:vezi/Helper/String.dart';
+// import 'package:vezi/Helper/app_assets.dart';
+// import 'package:vezi/Helper/cropped_container.dart';
+// import 'package:vezi/Screen/Login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,6 +16,10 @@ import '../Helper/AppBtn.dart';
 import '../Helper/Color.dart';
 import '../Helper/Constant.dart';
 import '../Helper/Session.dart';
+import '../Helper/String.dart';
+import '../Helper/app_assets.dart';
+import '../Helper/cropped_container.dart';
+import 'Login.dart';
 
 class SetPass extends StatefulWidget {
   final String mobileNumber;

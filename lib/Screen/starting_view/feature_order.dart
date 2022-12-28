@@ -3,16 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:entemarket_user/Helper/AppBtn.dart';
-import 'package:entemarket_user/Helper/SimBtn.dart';
-import 'package:entemarket_user/Provider/CartProvider.dart';
-import 'package:entemarket_user/Provider/FavoriteProvider.dart';
-import 'package:entemarket_user/Provider/UserProvider.dart';
-import 'package:entemarket_user/Screen/Cart.dart';
-import 'package:entemarket_user/Screen/HomePage.dart';
-import 'package:entemarket_user/Screen/Login.dart';
-import 'package:entemarket_user/Screen/Manage_Address.dart';
-import 'package:entemarket_user/Screen/Product_Detail.dart';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +15,7 @@ import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 import 'package:http/http.dart' as http;
+import '../../Helper/AppBtn.dart';
 import '../../Helper/Color.dart';
 import '../../Helper/Constant.dart';
 import '../../Helper/Session.dart';
@@ -33,6 +25,9 @@ import '../../Model/User.dart';
 import '../../Model/vendor_model.dart';
 import '../../Provider/SettingProvider.dart';
 import '../Add_Address.dart';
+import '../Cart.dart';
+import '../HomePage.dart';
+import '../Manage_Address.dart';
 
 class FeatureOrder extends StatefulWidget {
   final String? name, id;

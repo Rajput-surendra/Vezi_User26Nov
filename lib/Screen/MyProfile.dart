@@ -3,19 +3,19 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:entemarket_user/Helper/ApiBaseHelper.dart';
-import 'package:entemarket_user/Helper/Color.dart';
-import 'package:entemarket_user/Helper/Session.dart';
-import 'package:entemarket_user/Helper/String.dart';
-import 'package:entemarket_user/Provider/SettingProvider.dart';
-import 'package:entemarket_user/Provider/UserProvider.dart';
-import 'package:entemarket_user/Screen/Customer_Support.dart';
-import 'package:entemarket_user/Screen/MyTransactions.dart';
-import 'package:entemarket_user/Screen/ReferEarn.dart';
-import 'package:entemarket_user/Screen/SendOtp.dart';
-import 'package:entemarket_user/Screen/Setting.dart';
-import 'package:entemarket_user/Screen/Login.dart';
-import 'package:entemarket_user/Screen/starting_view/plan_screen.dart';
+// import 'package:vezi/Helper/ApiBaseHelper.dart';
+// import 'package:vezi/Helper/Color.dart';
+// import 'package:vezi/Helper/Session.dart';
+// import 'package:vezi/Helper/String.dart';
+// import 'package:vezi/Provider/SettingProvider.dart';
+// import 'package:vezi/Provider/UserProvider.dart';
+// import 'package:vezi/Screen/Customer_Support.dart';
+// import 'package:vezi/Screen/MyTransactions.dart';
+// import 'package:vezi/Screen/ReferEarn.dart';
+// import 'package:vezi/Screen/SendOtp.dart';
+// import 'package:vezi/Screen/Setting.dart';
+// import 'package:vezi/Screen/Login.dart';
+// import 'package:vezi/Screen/starting_view/plan_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' as http;
@@ -27,14 +27,27 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vezi/Helper/Color.dart';
+import 'package:vezi/Screen/starting_view/plan_screen.dart';
+import '../Helper/ApiBaseHelper.dart';
 import '../Helper/Constant.dart';
+import '../Helper/Session.dart';
+import '../Helper/String.dart';
+import '../Provider/SettingProvider.dart';
 import '../Provider/Theme.dart';
+import '../Provider/UserProvider.dart';
 import '../main.dart';
+import 'Customer_Support.dart';
 import 'Faqs.dart';
+import 'Login.dart';
 import 'Manage_Address.dart';
 import 'MyOrder.dart';
+import 'MyTransactions.dart';
 import 'My_Wallet.dart';
 import 'Privacy_Policy.dart';
+import 'ReferEarn.dart';
+import 'SendOtp.dart';
+import 'Setting.dart';
 
 class MyProfile extends StatefulWidget {
   @override
@@ -774,7 +787,7 @@ class StateProfile extends State<MyProfile> with TickerProviderStateMixin {
       themeNotifier.setThemeMode(ThemeMode.system);
       prefs.setString(APP_THEME, DEFAULT_SYSTEM);
 
-      var brightness = SchedulerBinding.instance!.window.platformBrightness;
+      var brightness = SchedulerBinding.instance.window.platformBrightness;
       if (mounted)
         setState(() {
           isDark = brightness == Brightness.dark;

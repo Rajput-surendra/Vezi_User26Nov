@@ -1,5 +1,7 @@
-import 'package:entemarket_user/Provider/SettingProvider.dart';
+// import 'package:vezi/Provider/SettingProvider.dart';
 import 'package:flutter/material.dart';
+
+import 'SettingProvider.dart';
 
 class UserProvider extends ChangeNotifier {
   String _userName = '',

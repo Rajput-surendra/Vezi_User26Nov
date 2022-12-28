@@ -336,7 +336,7 @@ class StateAddress extends State<ManageAddress> with TickerProviderStateMixin {
                 } else
                   delCharge = 0;
 
-                totalPrice = totalPrice + delCharge;
+                totalPrice = totalPrice + delChrge;
               }
 
               addModel.forEach((element) => element.isSelected = false);
@@ -386,7 +386,7 @@ class StateAddress extends State<ManageAddress> with TickerProviderStateMixin {
               } else
                 delCharge = 0;
 
-              totalPrice = totalPrice + delCharge;
+              totalPrice = totalPrice + delChrge;
             } else {
               addressList
                   .removeWhere((item) => item.id == addressList[index].id);

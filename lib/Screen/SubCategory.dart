@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:entemarket_user/Helper/Session.dart';
-import 'package:entemarket_user/Model/Section_Model.dart';
 import 'package:flutter/material.dart';
-import 'package:entemarket_user/Helper/Color.dart';
+
+import 'package:vezi/Helper/Color.dart';
+import '../Helper/Session.dart';
+import '../Model/Section_Model.dart';
 import 'ProductList.dart';
 
 class SubCategory extends StatelessWidget {

@@ -2,12 +2,12 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
-import 'package:entemarket_user/Helper/String.dart';
-import 'package:entemarket_user/Helper/app_assets.dart';
-import 'package:entemarket_user/Helper/cropped_container.dart';
-import 'package:entemarket_user/Provider/SettingProvider.dart';
-import 'package:entemarket_user/Provider/UserProvider.dart';
-import 'package:entemarket_user/Screen/Login.dart';
+// import 'package:vezi/Helper/String.dart';
+// import 'package:vezi/Helper/app_assets.dart';
+// import 'package:vezi/Helper/cropped_container.dart';
+// import 'package:vezi/Provider/SettingProvider.dart';
+// import 'package:vezi/Provider/UserProvider.dart';
+// import 'package:vezi/Screen/Login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +21,13 @@ import '../Helper/Color.dart';
 import '../Helper/Constant.dart';
 import '../Helper/Session.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+
+import '../Helper/String.dart';
+import '../Helper/app_assets.dart';
+import '../Helper/cropped_container.dart';
+import '../Provider/SettingProvider.dart';
+import '../Provider/UserProvider.dart';
+import 'Login.dart';
 class SignUp extends StatefulWidget {
   @override
   _SignUpPageState createState() => _SignUpPageState();

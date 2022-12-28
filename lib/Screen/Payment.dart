@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:entemarket_user/Provider/UserProvider.dart';
+// import 'package:vezi/Provider/UserProvider.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:http/http.dart';
@@ -18,6 +18,7 @@ import '../Helper/SimBtn.dart';
 import '../Helper/String.dart';
 import '../Helper/Stripe_Service.dart';
 import '../Model/Model.dart';
+import '../Provider/UserProvider.dart';
 import 'Cart.dart';
 
 class Payment extends StatefulWidget {
@@ -100,7 +101,7 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
       ];
     });
     if (widget.msg != '')
-      WidgetsBinding.instance!
+      WidgetsBinding.instance
           .addPostFrameCallback((_) => setSnackbar(widget.msg!));
     buttonController = new AnimationController(
         duration: new Duration(milliseconds: 2000), vsync: this);
@@ -315,14 +316,14 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
                                                   }),
                                             ),
                                             Divider(),
-                                            ListView.builder(
-                                                shrinkWrap: true,
-                                                physics:
-                                                    NeverScrollableScrollPhysics(),
-                                                itemCount: timeModel.length,
-                                                itemBuilder: (context, index) {
-                                                  return timeSlotItem(index);
-                                                })
+                                            // ListView.builder(
+                                            //     shrinkWrap: true,
+                                            //     physics:
+                                            //         NeverScrollableScrollPhysics(),
+                                            //     itemCount: timeModel.length,
+                                            //     itemBuilder: (context, index) {
+                                            //       return timeSlotItem(index);
+                                            //     })
                                           ],
                                         ),
                                       )

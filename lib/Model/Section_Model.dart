@@ -1,5 +1,8 @@
-import 'package:entemarket_user/Helper/String.dart';
-import 'package:entemarket_user/Model/User.dart';
+// import 'package:vezi/Helper/String.dart';
+// import 'package:vezi/Model/User.dart';
+
+import '../Helper/String.dart';
+import 'User.dart';
 
 class SectionModel {
   String? id,

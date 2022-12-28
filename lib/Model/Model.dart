@@ -70,12 +70,15 @@ class Model {
         id: parsedJson[ID],
         name: parsedJson[TITLE],
         fromTime: parsedJson[FROMTIME],
-        lastTime: parsedJson[TOTIME]);
+        lastTime: parsedJson[TOTIME],
+       // image: parsedJson[IMAGE],
+    );
+
   }
 
   factory Model.fromTicket(Map<String, dynamic> parsedJson) {
     String date = parsedJson[DATE_CREATED];
-    date = DateFormat('dd-MM-yyyy').format(DateTime.parse(date));
+   // date = DateFormat('dd-MM-yyyy').format(DateTime.parse(date));
     return new Model(
         id: parsedJson[ID],
         title: parsedJson[SUB],

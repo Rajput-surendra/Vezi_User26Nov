@@ -1,12 +1,13 @@
-import 'package:entemarket_user/Helper/ApiBaseHelper.dart';
-import 'package:entemarket_user/Helper/Color.dart';
-import 'package:entemarket_user/Helper/Session.dart';
-import 'package:entemarket_user/Screen/ProductList.dart';
-import 'package:entemarket_user/Screen/starting_view/SubCategory.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:vezi/Screen/starting_view/SubCategory.dart';
 
+import '../Helper/ApiBaseHelper.dart';
+import '../Helper/Color.dart';
+import '../Helper/Session.dart';
 import '../Helper/String.dart';
+import 'ProductList.dart';
 
 class SellerProfile extends StatefulWidget {
   final String? sellerID,
