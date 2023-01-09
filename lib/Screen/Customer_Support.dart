@@ -463,10 +463,11 @@ class _CustomerSupportState extends State<CustomerSupport>
       children: <Widget>[
         InkWell(
           onTap: () async {
-            var _image =
+           /* var _image =
             await ImagePicker.platform.pickImage(source: ImageSource.camera);
             print(_image!.path);
-            addImage(_image);
+            addImage(_image);*/
+            uploadAadharFromCamOrGallary(context);
 
           },
           child: Padding(
@@ -481,6 +482,9 @@ class _CustomerSupportState extends State<CustomerSupport>
             ),
           ),
         ),
+
+
+
         // MaterialButton(
         //   child: Text("Add Image:  ${imageList.length}"),
         //   onPressed: () async {
@@ -544,8 +548,10 @@ class _CustomerSupportState extends State<CustomerSupport>
                                 child: InkWell(
                                   onTap: (){
                                     setState(() {
-                                      selectedImageList.remove(imageList[index].path);
-                                      imageList[index].path == null;
+                                      imageCache.clear();
+                                      imageList.clear();
+                                     /* selectedImageList.remove(imageList[index].path);
+                                      imageList[index].path =null;*/
                                     });
                                   },
                                   child: Container(
@@ -570,6 +576,89 @@ class _CustomerSupportState extends State<CustomerSupport>
     );
   }
 
+
+
+
+  uploadAadharFromCamOrGallary(BuildContext context) {
+    containerForSheet<String>(
+      context: context,
+      child: CupertinoActionSheet(
+        actions: <Widget>[
+          CupertinoActionSheetAction(
+            child: Text(
+              "Camera",
+              style: TextStyle(color: Colors.black, fontSize: 15),
+            ),
+            onPressed: () async {
+              var _image =
+              await ImagePicker.platform.pickImage(source: ImageSource.camera);
+              print(_image!.path);
+              addImage(_image);
+              Navigator.of(context, rootNavigator: true).pop("Discard");
+            },
+          ),
+          CupertinoActionSheetAction(
+            child: Text(
+              "Photo & Video Library",
+              style: TextStyle(color: Colors.black, fontSize: 15),
+            ),
+            onPressed: () async {
+              var _image =
+                  await ImagePicker.platform.pickImage(source: ImageSource.gallery);
+              print(_image!.path);
+              addImage(_image);
+              Navigator.of(context, rootNavigator: true).pop("Discard");
+            },
+          ),
+        ],
+        cancelButton: CupertinoActionSheetAction(
+          child: Text(
+            "Cancel",
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
+          isDefaultAction: true,
+          onPressed: () {
+             Navigator.pop(context, 'Cancel');
+            Navigator.of(context, rootNavigator: true).pop("Discard");
+          },
+        ),
+      ),
+    );
+  }
+
+
+  Future<void> getAadharFromCamera() async {
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.camera,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        aadharImage =  File(pickedFile.path);
+        // imagePath = File(pickedFile.path) ;
+        // filePath = imagePath!.path.toString();
+      });
+    }
+  }
+
+  Future<void> getAadharFromGallery() async {
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        aadharImage =  File(pickedFile.path);
+        // imagePath = File(pickedFile.path) ;
+        // filePath = imagePath!.path.toString();
+      });
+    }
+  }
+
+  void containerForSheet<T>({BuildContext? context, Widget? child}) {
+    showCupertinoModalPopup<T>(
+      context: context!,
+      builder: (BuildContext context) => child!,
+    ).then<void>((T? value) {});
+  }
 
 
 

@@ -486,10 +486,10 @@ class StateProfile extends State<MyProfile> with TickerProviderStateMixin {
             ? Container()
             : _getDrawerItem(getTranslated(context, 'MYTRANSACTION')!,
                 'assets/images/pro_th.svg'),
-        CUR_USERID == "" || CUR_USERID == null
+       /* CUR_USERID == "" || CUR_USERID == null
             ? Container()
             : _getDrawerItem(getTranslated(context, 'Customer_Plan')!,
-            'assets/images/pro_myorder.svg'),
+            'assets/images/pro_myorder.svg'),*/
         // CUR_USERID == "" || CUR_USERID == null ? Container() : _getDivider(),
         _getDrawerItem(getTranslated(context, 'CHANGE_THEME_LBL')!,
             'assets/images/pro_theme.svg'),
@@ -576,12 +576,13 @@ class StateProfile extends State<MyProfile> with TickerProviderStateMixin {
             );
 
             //sendAndRetrieveMessage();
-          } else if (title == getTranslated(context, 'Customer_Plan')) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PlanScreen(name: getTranslated(context, 'Customer_Plan'),),
-                ));
+         // }
+          // else if (title == getTranslated(context, 'Customer_Plan')) {
+          //   Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => PlanScreen(name: getTranslated(context, 'Customer_Plan'),),
+          //       ));
           }else if (title == getTranslated(context, 'MYTRANSACTION')) {
             Navigator.push(
                 context,

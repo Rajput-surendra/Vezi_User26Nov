@@ -50,7 +50,7 @@ class WelcomeTwoView extends StatelessWidget {
               Container(
                 margin: EdgeInsets.symmetric(horizontal: mysize.width / 10),
                 child: Text(
-                  "Vezi.global is a multivendor on-demand marketplace. Our services include the buying and selling of - Groceries, Food,  Pet supplies, Electronics, Furniture, Gifts, Fashion and more.",
+                  "Vezi is a multivendor on-demand marketplace. Our Services include the buying and selling of Fruits, vegetables, groceries, dried fruits, and more.",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.w400),
                 ),

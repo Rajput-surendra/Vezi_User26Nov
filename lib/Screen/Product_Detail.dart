@@ -2210,7 +2210,7 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
                     // Divider(),
                     _specification(),
                     // Divider(),
-                    showCountry(),
+                   /* showCountry(),*/
 
                     _deliverPincode(),
 
@@ -3013,7 +3013,7 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
       ),
     );
   }
-  showCountry() {
+ /* showCountry() {
     return Card(
       elevation: 0,
       child: GestureDetector(
@@ -3028,7 +3028,7 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
 
       ),
     );
-  }
+  }*/
 
   _sellerDetail() {
     String? name = widget.model!.seller_name;

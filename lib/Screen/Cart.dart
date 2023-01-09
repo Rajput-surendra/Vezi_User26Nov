@@ -110,9 +110,13 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     clearAll();
-    // getDelivery();
+    getDelivery();
+    Future.delayed(Duration(
+      seconds: 1
+    ),(){
+      _getCart("0");
+    });
 
-    _getCart("0");
     _getSaveLater("1");
     // _getAddress();
 
@@ -835,7 +839,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                 ),
                               ),
                             ),
-                            GestureDetector(
+                          /*  GestureDetector(
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.only(
                                     start: 8.0, end: 8, bottom: 8),
@@ -851,7 +855,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                     false)
                                   removeFromCartCheckout(index, true, cartList);
                               },
-                            )
+                            )*/
                           ],
                         ),
                         cartList[index]
@@ -949,7 +953,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                         "null"
                                 ? Row(
                                     children: <Widget>[
-                                      Row(
+                                   /*   Row(
                                         children: <Widget>[
                                           GestureDetector(
                                             child: Card(
@@ -975,7 +979,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                                     index, false, cartList);
                                             },
                                           ),
-                                          Container(
+                                        *//*  Container(
                                             width: 26,
                                             height: 20,
                                             child: Stack(
@@ -1028,8 +1032,8 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                                 ),
                                               ],
                                             ),
-                                          ),
-                                          GestureDetector(
+                                          ),*//*
+                                         *//* GestureDetector(
                                             child: Card(
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
@@ -1056,9 +1060,9 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                                       .toString(),
                                                   cartList);
                                             },
-                                          )
+                                          )*//*
                                         ],
-                                      ),
+                                      ),*/
                                     ],
                                   )
                                 : Container(),
@@ -1397,13 +1401,11 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
     if (_isNetworkAvail) {
       try {
         var parameter = {USER_ID: CUR_USERID, SAVE_LATER: save};
-
         print(getCartApi);
         print(parameter);
         Response response =
             await post(getCartApi, body: parameter, headers: headers)
                 .timeout(const Duration(seconds: timeOut));
-
         var getdata = json.decode(response.body);
         bool error = getdata["error"];
         String? msg = getdata["message"];
@@ -1415,21 +1417,18 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
           taxPer = double.parse(getdata[TAX_PER]);
           txtAmt = double.parse(getdata["tax_amount"]);
           sellerId = data[0]['seller_id'].toString();
-
           totalPrice = delChrge + oriPrice + 0;
-          print("Total----1${totalPrice}DEL-------1${delChrge}");
+          print("Total----1 ${totalPrice}DEL-------1 ${delChrge}");
           List<SectionModel> cartList = (data as List)
               .map((data) => SectionModel.fromCart(data))
               .toList();
           context.read<CartProvider>().setCartlist(cartList);
-          getDelivery();
-
+            getDelivery();
           if (getdata.containsKey(PROMO_CODES)) {
             var promo = getdata[PROMO_CODES];
             promoList =
                 (promo as List).map((e) => Promo.fromJson(e)).toList();
           }
-
           for (int i = 0; i < cartList.length; i++)
             _controller.add(TextEditingController());
         } else {
@@ -2733,6 +2732,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                                               delCharge = tempCharge;
                                                             }
                                                             totalPrice = oriPrice+delChrge;
+                                                            print("total again here ${totalPrice}");
                                                           });
                                                         }
                                                         checkoutState!(() {
@@ -2857,7 +2857,9 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                 delCharge = 0;
               }
             }
-            totalPrice = totalPrice + delChrge + 0;
+            print("last total price here ${totalPrice} and ${delChrge}");
+            totalPrice = totalPrice  + 0;
+            print("total price here $totalPrice");
           } else {
             if (ISFLAT_DEL) {
               if ((oriPrice) < double.parse(MIN_AMT!)) {
@@ -2867,6 +2869,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
               }
             }
             totalPrice = totalPrice + delChrge + 0;
+            print("total here 1 ${totalPrice}");
           }
           if (mounted) {
             setState(() {
@@ -2922,6 +2925,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
     delChrge = double.parse(getdata["delivery_charge"].toString());
 
     setState(() {
+      totalPrice = delChrge + oriPrice + 0;
       // delCharge = double.parse(delChrge.toString());
       // totalPrice = oriPrice + delChrge;
     });
@@ -3135,7 +3139,8 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
           QUANTITY: quantity,
           TOTAL: oriPrice.toString(),
           FINAL_TOTAL: totalPrice.toString(),
-          DEL_CHARGE: delCharge.toString(),
+          // DEL_CHARGE: delCharge.toString(),
+           DEL_CHARGE: delChrge.toString(),
           // TAX_AMT: taxAmt.toString(),
           TAX_PER: taxPer.toString(),
 
@@ -3165,14 +3170,16 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
         } else if (payMethod == getTranslated(context, 'BANKTRAN')) {
           parameter[ACTIVE_STATUS] = WAITING;
         }
-        print(parameter);
+        print("this is place order params ========>>>>> ${parameter.toString()}");
 
         Response response =
             await post(placeOrderApi, body: parameter, headers: headers)
                 .timeout(const Duration(seconds: timeOut));
+
+
         _placeOrder = true;
-        print(response.statusCode);
-        print(response.body);
+        print("Singh----------${response.statusCode}");
+        print("Surendra-------${response.body}");
         if (response.statusCode == 200) {
           var getdata = json.decode(response.body);
           bool error = getdata["error"];
@@ -3933,7 +3940,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      getTranslated(context, 'TOTAL_PRICE')!,
+                                     "Total Price (Inc. VAT)",
                                       style: Theme.of(context)
                                           .textTheme
                                           .subtitle2!

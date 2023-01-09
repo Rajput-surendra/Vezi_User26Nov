@@ -161,7 +161,6 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       top: false,
       bottom: true,
@@ -187,7 +186,7 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
                                   return Card(
                                     elevation: 0,
                                     child: userProvider.curBalance != "0" &&
-                                            userProvider.curBalance.isNotEmpty &&
+                                            // userProvider.curBalance.isNotEmpty &&
                                             userProvider.curBalance != ""
                                         ? Padding(
                                             padding: const EdgeInsets.symmetric(
@@ -245,35 +244,35 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
                                                     .textTheme
                                                     .subtitle1,
                                               ),
-                                              subtitle: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 8.0),
-                                                child: Text(
-                                                  isUseWallet!
-                                                      ? getTranslated(context,
-                                                              'REMAIN_BAL')! +
-                                                          " : " +
-                                                          CUR_CURRENCY! +
-                                                          " " +
-                                                          remWalBal
-                                                              .toStringAsFixed(2)
-                                                      : getTranslated(context,
-                                                              'TOTAL_BAL')! +
-                                                          " : " +
-                                                          CUR_CURRENCY! +
-                                                          " " +
-                                                          double.parse(
-                                                                  userProvider
-                                                                      .curBalance)
-                                                              .toStringAsFixed(2),
-                                                  style: TextStyle(
-                                                      fontSize: 15,
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .black),
-                                                ),
-                                              ),
+                                              // subtitle: Padding(
+                                              //   padding:
+                                              //       const EdgeInsets.symmetric(
+                                              //           vertical: 8.0),
+                                              //   child: Text(
+                                              //     isUseWallet!
+                                              //         ? getTranslated(context,
+                                              //                 'REMAIN_BAL')! +
+                                              //             " : " +
+                                              //             CUR_CURRENCY! +
+                                              //             " " +
+                                              //             remWalBal
+                                              //                 .toStringAsFixed(2)
+                                              //         : getTranslated(context,
+                                              //                 'TOTAL_BAL')! +
+                                              //             " : " +
+                                              //             CUR_CURRENCY! +
+                                              //             " " +
+                                              //             double.parse(
+                                              //                     userProvider
+                                              //                         .curBalance)
+                                              //                 .toStringAsFixed(2),
+                                              //     style: TextStyle(
+                                              //         fontSize: 15,
+                                              //         color: Theme.of(context)
+                                              //             .colorScheme
+                                              //             .black),
+                                              //   ),
+                                              // ),
                                             ),
                                           )
                                         : Container(),
@@ -316,14 +315,14 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
                                                   }),
                                             ),
                                             Divider(),
-                                            // ListView.builder(
-                                            //     shrinkWrap: true,
-                                            //     physics:
-                                            //         NeverScrollableScrollPhysics(),
-                                            //     itemCount: timeModel.length,
-                                            //     itemBuilder: (context, index) {
-                                            //       return timeSlotItem(index);
-                                            //     })
+                                            ListView.builder(
+                                                shrinkWrap: true,
+                                                physics:
+                                                    NeverScrollableScrollPhysics(),
+                                                itemCount: timeModel.length,
+                                                itemBuilder: (context, index) {
+                                                  return timeSlotItem(index);
+                                                })
                                           ],
                                         ),
                                       )
@@ -506,12 +505,14 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
   Future<void> _getdateTime() async {
     _isNetworkAvail = await isNetworkAvailable();
     if (_isNetworkAvail) {
-      timeSlotList.clear();
+       timeSlotList.clear();
       try {
         var parameter = {TYPE: PAYMENT_METHOD, USER_ID: CUR_USERID};
         Response response =
             await post(getSettingApi, body: parameter, headers: headers)
                 .timeout(Duration(seconds: timeOut));
+        print(getSettingApi.toString());
+        print(parameter.toString());
 
         if (response.statusCode == 200) {
           var getdata = json.decode(response.body);

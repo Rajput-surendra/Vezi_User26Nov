@@ -31,7 +31,7 @@ import 'Login.dart';
 import 'Product_Detail.dart';
 
 class ProductList extends StatefulWidget {
-  final String? name, id,typeId;
+  final String? name, id,typeId,catId;
   final bool? tag, fromSeller;
   final int? dis;
   String? subCatId;
@@ -44,6 +44,7 @@ class ProductList extends StatefulWidget {
       this.fromSeller,
       this.dis,
       this.subCatId,
+        this.catId,
         this.typeId,
       required this.subList})
       : super(key: key);

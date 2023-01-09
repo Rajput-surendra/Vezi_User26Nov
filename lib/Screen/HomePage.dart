@@ -412,47 +412,47 @@ class _HomePageState extends State<HomePage>
                     //   ),
                     // ),
 
-                   saveButton("Feature Products", () {
-                      if(CUR_USERID != null){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const FeatureProduct(
-                                name: "Feature Product",
-                                /*  tag: false,
-                    fromSeller: false,*/
-                              ),
-                            ));
-                      } else {
-                        showDialog(
-                          context: context,
-                          builder: (ctx) => AlertDialog(
-                            // title: const Text("Alert Dialog Box"),
-                            content: const Text("Please Login first to Use This Features."),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => Login(),
-                                      ));
-                                },
-                                child: Container(
-                                  color: Colors.green,
-                                  padding: const EdgeInsets.all(10),
-                                  child: const Text("okay",
-                                    style: TextStyle(
-                                      color: Colors.white
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      }
-                    }),
+                   // saveButton("Feature Products", () {
+                   //    if(CUR_USERID != null){
+                   //      Navigator.push(
+                   //          context,
+                   //          MaterialPageRoute(
+                   //            builder: (context) => const FeatureProduct(
+                   //              name: "Feature Product",
+                   //              /*  tag: false,
+                   //  fromSeller: false,*/
+                   //            ),
+                   //          ));
+                   //    } else {
+                   //      showDialog(
+                   //        context: context,
+                   //        builder: (ctx) => AlertDialog(
+                   //          // title: const Text("Alert Dialog Box"),
+                   //          content: const Text("Please Login first to Use This Features."),
+                   //          actions: <Widget>[
+                   //            TextButton(
+                   //              onPressed: () {
+                   //                Navigator.pushReplacement(
+                   //                    context,
+                   //                    MaterialPageRoute(
+                   //                      builder: (context) => Login(),
+                   //                    ));
+                   //              },
+                   //              child: Container(
+                   //                color: Colors.green,
+                   //                padding: const EdgeInsets.all(10),
+                   //                child: const Text("okay",
+                   //                  style: TextStyle(
+                   //                    color: Colors.white
+                   //                  ),
+                   //                ),
+                   //              ),
+                   //            ),
+                   //          ],
+                   //        ),
+                   //      );
+                   //    }
+                   //  }),
 
                     _section(),
                     const SizedBox(height: 10,),
@@ -1856,7 +1856,7 @@ class _HomePageState extends State<HomePage>
 
   Widget _buildImagePageItem(Model slider) {
     double height = deviceWidth! / 0.5;
-
+    print("slider data here ${slider.name} and ${slider.image}");
     return GestureDetector(
       child: FadeInImage(
           fadeInDuration: const Duration(milliseconds: 150),
@@ -1877,12 +1877,12 @@ class _HomePageState extends State<HomePage>
                 color: colors.primary,
               ),
           placeholder: const AssetImage(MyAssets.slider_loding)),
-      onTap: () async {
+        onTap: () async {
+        print("ooooo");
         int curSlider = context.read<HomeProvider>().curSlider;
-
+          print("checking cur slider value here ${curSlider} and ${homeSliderList}");
         if (homeSliderList[curSlider].type == "products") {
           Product? item = homeSliderList[curSlider].list;
-
           Navigator.push(
             context,
             PageRouteBuilder(
@@ -1898,6 +1898,7 @@ class _HomePageState extends State<HomePage>
                   builder: (context) => ProductList(
                     name: item.name,
                     id: item.seller_id,
+
                     tag: false,
                     fromSeller: false,
                     subList: const [],
@@ -2168,7 +2169,7 @@ class _HomePageState extends State<HomePage>
     apiBaseHelper.postAPICall(getSliderApi, map).then((getdata) {
       bool error = getdata["error"];
       String? msg = getdata["message"];
-      print(getSliderApi.toString());
+      print("@@@@@@@@@@@@@@@@@${getSliderApi.toString()}");
       print(getSliderApi.toString());
       if (!error) {
         var data = getdata["data"];
@@ -2482,7 +2483,7 @@ setState(() {
                     ),
                   ),
                   Container(
-                    height: 260,
+                    height: 240,
                     padding: const EdgeInsets.only(top: 10, left: 10,bottom: 20),
                     child: ListView.builder(
                       itemCount: sellerList.length,
@@ -2562,25 +2563,9 @@ setState(() {
                                       width: 100,
                                     ),
                                     const SizedBox(height: 5,),
+
                                     SizedBox(
-                                      child: Text(
-                                        calculateDistance(latitudeHome, longitudeHome, sellerList[index].latitude, sellerList[index].longitude),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleSmall!
-                                            .copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .fontColor,
-                                          fontWeight: FontWeight.w600,),
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      width: 100,
-                                    ),
-                                    SizedBox(
-                                      child: Text(
-                                        "Delivery Time : ${sellerList[index].delivery_tiem!}",
+                                      child: Text("${sellerList[index].store_name!}",
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleSmall!
@@ -2595,6 +2580,38 @@ setState(() {
                                       ),
                                       width: 100,
                                     ),
+                                    // SizedBox(
+                                    //   child: Text(
+                                    //     calculateDistance(latitudeHome, longitudeHome, sellerList[index].latitude, sellerList[index].longitude),
+                                    //     style: Theme.of(context)
+                                    //         .textTheme
+                                    //         .titleSmall!
+                                    //         .copyWith(
+                                    //       color: Theme.of(context)
+                                    //           .colorScheme
+                                    //           .fontColor,
+                                    //       fontWeight: FontWeight.w600,),
+                                    //     overflow: TextOverflow.ellipsis,
+                                    //     textAlign: TextAlign.center,
+                                    //   ),
+                                    //   width: 100,
+                                    // ),
+                                    // SizedBox(
+                                    //   child: Text("${sellerList[index].store_name!}",
+                                    //     style: Theme.of(context)
+                                    //         .textTheme
+                                    //         .titleSmall!
+                                    //         .copyWith(
+                                    //       color: Theme.of(context)
+                                    //           .colorScheme
+                                    //           .fontColor,
+                                    //       fontSize: 8.sp,
+                                    //       fontWeight: FontWeight.w500,),
+                                    //     overflow: TextOverflow.ellipsis,
+                                    //     textAlign: TextAlign.center,
+                                    //   ),
+                                    //   width: 100,
+                                    // ),
                                   ],
                                 ),
                               ),

@@ -120,7 +120,7 @@ class _SellerListState extends State<SellerList> {
                                   FadeInImage(
                                     image: CachedNetworkImageProvider(
                                         sellerList[index].seller_profile!),
-                                    height: 125.0,
+                                    height: 110.0,
                                     width: 135.0,
                                     fit: BoxFit.cover,
                                     imageErrorBuilder:
@@ -151,35 +151,35 @@ class _SellerListState extends State<SellerList> {
                                 overflow: TextOverflow.ellipsis,
                               ),
                               const SizedBox(height: 5,),
-                              Text(
-                                calculateDistance(latitudeHome, longitudeHome, model.latitude, model.longitude),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .primary,fontSize: 10.sp,),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              const SizedBox(height: 5,),
-                              Container(
-                                child: Text(
-                                  "Delivery Time : ${sellerList[index].delivery_tiem!}",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleSmall!
-                                      .copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .fontColor,
-                                    fontSize: 8.sp,
-                                    fontWeight: FontWeight.w500,),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                              const SizedBox(height: 5,),
+                              // Text(
+                              //   calculateDistance(latitudeHome, longitudeHome, model.latitude, model.longitude),
+                              //   style: Theme.of(context)
+                              //       .textTheme
+                              //       .bodyText1!
+                              //       .copyWith(
+                              //       color: Theme.of(context)
+                              //           .colorScheme
+                              //           .primary,fontSize: 10.sp,),
+                              //   maxLines: 1,
+                              //   overflow: TextOverflow.ellipsis,
+                              // ),
+                              // const SizedBox(height: 5,),
+                              // Container(
+                              //   child: Text(
+                              //     "Delivery Time : ${sellerList[index].delivery_tiem!}",
+                              //     style: Theme.of(context)
+                              //         .textTheme
+                              //         .titleSmall!
+                              //         .copyWith(
+                              //       color: Theme.of(context)
+                              //           .colorScheme
+                              //           .fontColor,
+                              //       fontSize: 8.sp,
+                              //       fontWeight: FontWeight.w500,),
+                              //     overflow: TextOverflow.ellipsis,
+                              //   ),
+                              // ),
+                              // const SizedBox(height: 5,),
                               Container(
                                 child: sellerList[index].openCloseStatus! == 0
                                     ? Text(
