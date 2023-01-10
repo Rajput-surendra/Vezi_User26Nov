@@ -186,7 +186,7 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
                                   return Card(
                                     elevation: 0,
                                     child: userProvider.curBalance != "0" &&
-                                            // userProvider.curBalance.isNotEmpty &&
+                                            userProvider.curBalance.isNotEmpty &&
                                             userProvider.curBalance != ""
                                         ? Padding(
                                             padding: const EdgeInsets.symmetric(
@@ -244,35 +244,35 @@ class StatePayment extends State<Payment> with TickerProviderStateMixin {
                                                     .textTheme
                                                     .subtitle1,
                                               ),
-                                              // subtitle: Padding(
-                                              //   padding:
-                                              //       const EdgeInsets.symmetric(
-                                              //           vertical: 8.0),
-                                              //   child: Text(
-                                              //     isUseWallet!
-                                              //         ? getTranslated(context,
-                                              //                 'REMAIN_BAL')! +
-                                              //             " : " +
-                                              //             CUR_CURRENCY! +
-                                              //             " " +
-                                              //             remWalBal
-                                              //                 .toStringAsFixed(2)
-                                              //         : getTranslated(context,
-                                              //                 'TOTAL_BAL')! +
-                                              //             " : " +
-                                              //             CUR_CURRENCY! +
-                                              //             " " +
-                                              //             double.parse(
-                                              //                     userProvider
-                                              //                         .curBalance)
-                                              //                 .toStringAsFixed(2),
-                                              //     style: TextStyle(
-                                              //         fontSize: 15,
-                                              //         color: Theme.of(context)
-                                              //             .colorScheme
-                                              //             .black),
-                                              //   ),
-                                              // ),
+                                              subtitle: Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 8.0),
+                                                child: Text(
+                                                  isUseWallet!
+                                                      ? getTranslated(context,
+                                                              'REMAIN_BAL')! +
+                                                          " : " +
+                                                          CUR_CURRENCY! +
+                                                          " " +
+                                                          remWalBal
+                                                              .toStringAsFixed(2)
+                                                      : getTranslated(context,
+                                                              'TOTAL_BAL')! +
+                                                          " : " +
+                                                          CUR_CURRENCY! +
+                                                          " " +
+                                                          double.parse(
+                                                                  userProvider
+                                                                      .curBalance)
+                                                              .toStringAsFixed(2),
+                                                  style: TextStyle(
+                                                      fontSize: 15,
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .black),
+                                                ),
+                                              ),
                                             ),
                                           )
                                         : Container(),

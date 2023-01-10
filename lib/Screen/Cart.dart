@@ -2654,7 +2654,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                                          print("ok now here ${delCharge}");
                                                          checkoutState!(() {
                                                            if(selTime!.toLowerCase().contains("collect")){
-                                                             tempCharge =delCharge;
+                                                             tempCharge =delCharge -promoAmt;
                                                               delCharge = 0;
                                                              print("ues ${delCharge}");
                                                            }else{
@@ -2664,7 +2664,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                                                delCharge;
                                                              });
                                                            }
-                                                           totalPrice = oriPrice+delChrge+0;
+                                                           totalPrice = oriPrice+delChrge-promoAmt;
                                                            print("Total----8${totalPrice}DEL-------8${delChrge}");
                                                          });
                                                        }
@@ -2691,14 +2691,14 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
                                                           print("checking delivery ${delCharge}");
                                                           checkoutState!(() {
                                                             if(selTime!.toLowerCase().contains("collect")){
-                                                              tempCharge =delCharge;
+                                                              // tempCharge =delCharge;
 
                                                               delCharge = 0;
                                                               print("ues");
                                                             }else{
-                                                              delCharge = tempCharge;
+                                                              // delCharge = tempCharge;
                                                             }
-                                                            totalPrice = oriPrice+delChrge;
+                                                            // totalPrice = oriPrice+delChrge;
                                                             print("Total----9${totalPrice}DEL-------9${delChrge}");
                                                           });
                                                         }
@@ -3096,6 +3096,7 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
     if (_isNetworkAvail) {
       context.read<CartProvider>().setProgress(true);
 
+
       SettingProvider settingsProvider =
           Provider.of<SettingProvider>(this.context, listen: false);
 
@@ -3175,6 +3176,9 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
         Response response =
             await post(placeOrderApi, body: parameter, headers: headers)
                 .timeout(const Duration(seconds: timeOut));
+        print("Surenrdra=============${placeOrderApi.toString()}");
+        print("Singn==============${parameter.toString()}");
+
 
 
         _placeOrder = true;
@@ -3199,6 +3203,8 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
               addTransaction(tranId, orderId, SUCCESS, msg, true);
             } else {
               context.read<UserProvider>().setCartCount("0");
+              print("Surenrdra=============${placeOrderApi.toString()}");
+              print("Singn==============${parameter.toString()}");
 
               clearAll();
 
@@ -3681,6 +3687,8 @@ class StateCart extends State<Cart> with TickerProviderStateMixin {
         Response response =
             await post(validatePromoApi, body: parameter, headers: headers)
                 .timeout(const Duration(seconds: timeOut));
+        print("Promocode==============${validatePromoApi.toString()}");
+        print("Promocode==============${parameter.toString()}");
 
         if (response.statusCode == 200) {
           var getdata = json.decode(response.body);

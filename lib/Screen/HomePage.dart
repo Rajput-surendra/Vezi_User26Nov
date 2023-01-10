@@ -2640,6 +2640,8 @@ setState(() {
       bool error = getdata["error"];
       String? msg = getdata["message"];
       print(msg);
+      print("ShivamSir ===============${getUserApi.toString()}");
+      print("ShivamSir1111 ===============${parameter.toString()}");
       if (!error) {
         var data = getdata["data"];
         if( App.localStorage.setString("firebaseUid", data[0]['fuid'])==null){

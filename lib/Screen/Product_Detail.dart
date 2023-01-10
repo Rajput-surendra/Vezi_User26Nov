@@ -1254,6 +1254,7 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
                                 child: SimBtn(
                                     size: 1.0,
                                     title: getTranslated(context, 'APPLY'),
+
                                     onBtnSelected: () async {
                                       if (validateAndSave()) {
                                         validatePin(curPin, false);
@@ -1693,6 +1694,7 @@ class StateItem extends State<ProductDetail> with TickerProviderStateMixin {
     if (mounted)
       setState(() {
         widget.model!.selVarient = _oldSelVarient;
+        print("Shivani==============================${widget.model!.selVarient}");
       });
   }
 
